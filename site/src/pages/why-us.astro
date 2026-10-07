@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+const points = [
+  {
+    title: 'Pure water, no chemicals',
+    description:
+      'Deionised water lifts dirt and salt film without leaving mineral spots behind — no harsh chemicals, no high-pressure gear, nothing that puts your panels or their warranty at risk.',
+  },
+  {
+    title: 'Insured and safety-first',
+    description: 'Public liability insurance in place. Every job assessed for safe access before we start.',
+    note: 'Draft copy — confirm your exact insurance details before this goes live.',
+  },
+  {
+    title: 'We know coastal build-up',
+    description:
+      'Running jobs across Sydney, the Central Coast and Newcastle means we see the same thing on roof after roof — salt air, pollen and bird traffic that Sydney’s inland suburbs just don’t cop the same way.',
+  },
+  {
+    title: 'Care for your system',
+    description: 'Every clean is done with your panels in mind first — the goal is better output, not just a shinier roof.',
+  },
+  {
+    title: 'Owner-operator, straight answers',
+    description:
+      'You deal with the person doing the work. No call centre, no subcontractors you’ve never met — just a clear price and a clean job.',
+  },
+];
+---
+
+<BaseLayout
+  title="Why SaltSpray Solar"
+  description="Owner-operated solar panel cleaning across Sydney, the Central Coast and Newcastle. Straight answers, on-time arrivals, a finish you can see from the driveway."
+>
+  <section class="bg-sand-100 px-gutter py-20">
+    <div class="mx-auto max-w-container">
+      <SectionHeader
+        eyebrow="Why SaltSpray Solar"
+        title="A local operator who treats your roof like his own"
+        description="SaltSpray Solar is owner-operated, servicing Sydney, the Central Coast and Newcastle. Straight answers, on-time arrivals, and a finish you can see from the driveway."
+        center
+      />
+    </div>
+  </section>
+
+  <section class="px-gutter py-24">
+    <div class="mx-auto max-w-container">
+      <ul class="grid grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2">
+        {points.map((point) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-teal-300 bg-teal-100 font-bold text-teal-700">
+              ✓
+            </span>
+            <div>
+              <h3 class="text-[19px] font-black leading-tight tracking-[-0.02em] text-navy-800">{point.title}</h3>
+              <p class="mt-2 text-[17px] leading-relaxed text-navy-800">{point.description}</p>
+              {point.note && <p class="mt-2 text-[13px] italic text-salt-500">{point.note}</p>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-navy-900 px-gutter py-16 text-center text-white">
+    <div class="mx-auto max-w-container">
+      <p class="font-display text-[28px] font-black text-white">Owner-operated.</p>
+      <p class="mt-2 text-[19px] text-salt-200">You deal with the person doing the work.</p>
+    </div>
+  </section>
+</BaseLayout>

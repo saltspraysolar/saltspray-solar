@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+---
+
+<BaseLayout
+  title="Reviews — SaltSpray Solar"
+  description="What SaltSpray Solar customers have to say."
+>
+  <section class="bg-sand-100 px-gutter py-20">
+    <div class="mx-auto max-w-container">
+      <SectionHeader eyebrow="Reviews" title="What our customers have to say" center />
+    </div>
+  </section>
+
+  <section class="px-gutter py-24">
+    <div class="mx-auto max-w-[560px] rounded-lg border border-dashed border-salt-300 bg-white p-12 text-center shadow-xs">
+      <div class="mx-auto flex h-[46px] w-[46px] items-center justify-center rounded-md bg-amber-100 text-amber-500" aria-hidden="true">★</div>
+      <p class="mt-4 text-[19px] font-bold text-navy-800">New to the coast, but not new to the work.</p>
+      <p class="mt-2 text-[17px] leading-relaxed text-salt-600">Check back soon for reviews from our first SaltSpray Solar customers.</p>
+    </div>
+    <p class="mt-6 text-center text-[13px] italic text-salt-500">
+      Once jobs are complete, drop real reviews in here — real name, real suburb, real quote, nothing written on a customer's behalf. A Google Reviews link can go here too, once your Business Profile is set up.
+    </p>
+  </section>
+</BaseLayout>

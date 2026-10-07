@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import FaqList from '../components/FaqList.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+
+const faqs = [
+  {
+    question: 'How often should solar panels be cleaned?',
+    answer:
+      'Once a year suits most homes. Twice a year makes sense near the coast, under trees or where birds like to perch, and promptly after any smoke or ash event, because ash bonds harder the longer it sits. Rather than a fixed calendar, watch your inverter app and book when output drops on comparable days. We can suggest a schedule once we’ve had a look at your system.',
+    open: true,
+  },
+  {
+    question: 'How do I know when my panels need cleaning?',
+    answer:
+      'Compare output on a clear day with a similar clear day a few months earlier. A steady drop with no other explanation is the clearest sign. You may also see a dark, grimy band along the bottom edge of the panels, where dirt and water collect. That band is build-up sitting on the glass and it’s costing you output.',
+  },
+  {
+    question: 'Is solar panel cleaning worth it?',
+    answer:
+      'For most coastal homes, yes. Salt, dust, pollen and bird droppings form a film that blocks sunlight, and near the water it builds up faster. A clean usually costs less than the generation you’d lose by leaving it, and it’s an easy way to spot a panel that’s underperforming. Not sure? Compare your inverter’s output on a clear day now with the same time last season.',
+  },
+  {
+    question: 'Doesn’t rain clean the panels?',
+    answer:
+      'Partly. On a steeper roof, rain runs down the glass and carries loose dust with it. On a low-pitch or flat array, the water sheets across the surface and leaves a residue as it dries. Rain does very little about bird droppings, sap, pollen film, salt or the dirt band along the bottom frame, and those are the deposits that actually cost you output. Salt is the big one on the coast.',
+  },
+  {
+    question: 'Is the clean safe for my roof and my panels?',
+    answer:
+      'Yes. Safety comes first on every job: no falls-from-height risk for you, no damage to your roof or panels, and we’re fully compliant with the safety requirements that apply to this work. You never need to climb up, move anything or take on any risk yourself.',
+  },
+  {
+    question: 'Can I clean my own solar panels?',
+    answer:
+      'You can, but the risk is the roof rather than the panels. A wet panel is close to frictionless, and falls from height are among the most serious injuries around the home, mostly while getting onto or off the roof. If you’d rather not take that on, that’s what we’re here for, so you never have to go up there.',
+  },
+  {
+    question: 'Can pressure washing be used on solar panels?',
+    answer:
+      'No, and a quote that mentions it is a reason to look elsewhere. High-pressure water can force its way past the edge seals and into the frame or junction box, and the damage often doesn’t show until months later. Abrasive pads and household detergents are just as bad because they wear away the anti-reflective coating that helps your panels perform. We use soft brushes and purified water only.',
+  },
+  {
+    question: 'Will cleaning damage my panels or void my warranty?',
+    answer:
+      'Correct cleaning protects your warranty rather than threatening it, and some manufacturers expect evidence of maintenance if a claim is made. What causes trouble is pressure washing, abrasive tools, harsh chemicals and physical damage such as someone standing on a panel. We use none of those, and every clean is logged so you have dated records on hand if you ever need them.',
+  },
+  {
+    question: 'Why does the water used matter?',
+    answer:
+      'Ordinary tap water carries dissolved minerals that dry into spots and streaks on hot glass, and that residue attracts more dust, so a poor clean can leave panels dirtier within weeks. Deionised water has nothing left in it to dry into spots, so the glass comes up clear with no minerals, no residue and no chemicals. If a quote is notably cheap, it’s worth asking what water is being used.',
+  },
+  {
+    question: 'Do I need to be home during the clean?',
+    answer:
+      'Not usually, as long as we can get safe access to the panels. We’ll confirm details when we book the job.',
+  },
+  {
+    question: 'What does it cost?',
+    answer:
+      'Every property’s different — panel count, access and how much build-up there is all affect the price. Run your details through our calculator on the Book Now page and it’ll give you a price on the spot.',
+  },
+  {
+    question: 'How does booking work?',
+    answer:
+      'Get your instant price on the Book Now page, choose a time that suits, and pop down a small deposit to lock it in. The balance is due on the day — no surprises.',
+  },
+  {
+    question: 'Which areas do you service?',
+    answer: 'Sydney, the Central Coast and Newcastle. See our Service Areas page, or just ask if you’re not sure.',
+  },
+  {
+    question: 'What happens if it rains on the day?',
+    answer: 'We’ll reschedule at no cost if the weather doesn’t play along.',
+  },
+];---
+
+<BaseLayout
+  title="FAQ — SaltSpray Solar"
+  description="Common questions about SaltSpray Solar's panel cleaning service."
+>
+  <section class="bg-sand-100 px-gutter py-20">
+    <div class="mx-auto max-w-container">
+      <SectionHeader eyebrow="Questions" title="Common questions" center />
+    </div>
+  </section>
+
+  <section class="px-gutter py-24">
+    <div class="mx-auto max-w-container">
+      <FaqList items={faqs} />
+    </div>
+  </section>
+
+  <section class="bg-navy-900 px-gutter py-16 text-center text-white">
+    <div class="mx-auto max-w-container">
+      <p class="text-[19px] leading-relaxed text-salt-200">Still have a question?</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <Button href={site.quoteHref} variant="primary">Get an Instant Quote →</Button>
+        <Button href={site.phone.href} variant="inverse">{`Call ${site.phone.display}`}</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

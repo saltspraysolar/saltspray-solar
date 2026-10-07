@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+.env
+.env.*
+.vercel/
+node_modules_old_*/
+dist_old_*/
+.astro_old_*/

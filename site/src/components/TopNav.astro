@@ -1,0 +1,68 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../data/site';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="sticky top-0 z-20 border-b border-white/15 bg-navy-900">
+  <div class="mx-auto flex max-w-container items-center gap-6 px-gutter py-3.5">
+    <Logo class="mr-auto" />
+
+    <nav aria-label="Main" class="hidden gap-6 md:flex">
+      {
+        site.nav.map((item) => {
+          const isCurrent = currentPath === item.href;
+          return (
+            <a
+              href={item.href}
+              class={`font-display text-[15px] font-bold text-white hover:text-amber-400 ${isCurrent ? 'text-amber-400' : ''}`}
+              aria-current={isCurrent ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <a
+      href={site.phone.href}
+      class="hidden items-center gap-2 font-display text-[15px] font-bold text-white hover:text-amber-400 md:inline-flex"
+    >
+      {site.phone.display}
+    </a>
+
+    <button
+      type="button"
+      class="flex h-11 w-11 items-center justify-center rounded-md border border-white/15 text-white md:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+      data-nav-toggle
+    >
+      ☰
+    </button>
+  </div>
+
+  <nav aria-label="Mobile" class="hidden flex-col border-t border-white/15 bg-navy-900 px-gutter py-4 md:hidden" data-nav-panel>
+    {site.nav.map((item) => (
+      <a href={item.href} class="py-2.5 font-display text-[15px] font-bold text-white hover:text-amber-400">
+        {item.label}
+      </a>
+    ))}
+    <a href={site.phone.href} class="py-2.5 font-display text-[15px] font-bold text-white hover:text-amber-400">
+      {site.phone.display}
+    </a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const panel = document.querySelector<HTMLElement>('[data-nav-panel]');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = panel?.classList.toggle('flex');
+    panel?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+</script>

@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+
+const services = [
+  {
+    title: 'Residential Solar Cleaning',
+    description:
+      'A full clean of every panel on your roof using pure, deionised water — no minerals left behind, no spotting, no streaks once it dries. Suited to houses, granny flats and anything with a roof and a system on it.',
+  },
+  {
+    title: 'Commercial & Strata Arrays',
+    description:
+      'Rooftop and ground-mount arrays for businesses, warehouses, schools and body corporates, scheduled around your operating hours so we’re not getting in the way of the working day.',
+  },
+  {
+    title: 'Bird Dropping & Grime Removal',
+    description:
+      'Baked-on droppings, tree sap, lichen and general grime lifted carefully off the glass without damaging seals, frames or mounting hardware.',
+  },
+  {
+    title: 'Pollen & Dust Wash',
+    description:
+      'Fine dust and pollen sit directly on the glass and block light before it ever reaches the cells underneath. We clear it off and restore a proper clean surface.',
+  },
+  {
+    title: 'Salt Spray Build-Up',
+    description:
+      'It’s in our name for a reason. Panels near the coast collect a fine salt film that dulls performance and is genuinely hard to shift with a garden hose. Pure water cuts through it properly.',
+  },
+  {
+    title: 'Spot-Free Pure Water Finish',
+    description:
+      'Deionised water has nothing left in it to dry into spots or streaks — so the glass comes up clear and stays that way, without chemicals or high-pressure gear anywhere near your system.',
+  },
+  {
+    title: 'Visual System Check',
+    description:
+      'While we’re up there, we keep an eye out for anything obvious — cracked glass, lifted seals, loose cabling — and let you know what we saw. We’re not electricians, but we’ll flag what’s worth a proper look.',
+  },
+];
+---
+
+<BaseLayout
+  title="Services — SaltSpray Solar"
+  description="Residential, commercial and strata solar panel cleaning across Sydney, the Central Coast and Newcastle."
+>
+  <section class="bg-sand-100 px-gutter py-20">
+    <div class="mx-auto max-w-container">
+      <SectionHeader
+        eyebrow="Services"
+        title="Solar cleaning, done properly, panel by panel"
+        description="Every job starts the same way — a look at your system, a clear idea of what's built up on the glass, and a clean that gets it off without putting anything else at risk. Here's what we cover."
+        center
+      />
+    </div>
+  </section>
+
+  <section class="px-gutter py-24">
+    <div class="mx-auto max-w-container">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((service, i) => (
+          <article class="flex flex-col gap-4 rounded-lg border border-salt-200 bg-white p-8 shadow-xs">
+            <div class="flex h-[46px] w-[46px] items-center justify-center rounded-md bg-amber-100 font-display text-lg font-black text-amber-700">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <h3 class="text-[21px] font-black leading-[1.25] tracking-[-0.02em] text-navy-800">{service.title}</h3>
+            <p class="text-[17px] leading-relaxed text-navy-800">{service.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy-900 px-gutter py-16 text-center text-white">
+    <div class="mx-auto max-w-container">
+      <p class="text-[19px] leading-relaxed text-salt-200">
+        Not sure which of these applies to you?
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <Button href={site.quoteHref} variant="primary">Get an Instant Quote →</Button>
+      </div>
+      <p class="mt-4 text-[15px] text-salt-300">and we'll sort it out from there.</p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+  open?: boolean;
+}
+
+interface Props {
+  items: FaqItem[];
+  class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+---
+
+<div class={`mx-auto max-w-[880px] ${className}`}>
+  {items.map((item) => (
+    <details open={item.open} class="group border-b border-salt-200">
+      <summary
+        class="flex cursor-pointer list-none items-center justify-between gap-4 py-[22px] font-display text-[19px] font-bold text-navy-800 [&::-webkit-details-marker]:hidden"
+      >
+        {item.question}
+        <span class="text-[22px] text-amber-600 group-open:hidden">+</span>
+        <span class="hidden text-[22px] text-amber-600 group-open:inline">–</span>
+      </summary>
+      <p class="max-w-[680px] pb-6 text-[17px] leading-relaxed text-navy-800">{item.answer}</p>
+    </details>
+  ))}
+</div>

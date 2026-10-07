@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+
+const regions = [
+  {
+    name: 'Sydney',
+    suburbs: ['Eastern Suburbs', 'Northern Beaches', 'Sutherland Shire', 'Inner West', 'North Shore', '+ surrounding suburbs'],
+  },
+  {
+    name: 'Central Coast',
+    suburbs: ['Gosford', 'Terrigal', 'Avoca Beach', 'The Entrance', 'Woy Woy', '+ surrounding suburbs'],
+  },
+  {
+    name: 'Newcastle',
+    suburbs: ['Newcastle CBD', 'Merewether', 'Charlestown', 'Belmont', 'Lake Macquarie', '+ surrounding suburbs'],
+  },
+];
+---
+
+<BaseLayout
+  title="Service Areas — SaltSpray Solar"
+  description="SaltSpray Solar services Sydney, the Central Coast and Newcastle."
+>
+  <section class="bg-sand-100 px-gutter py-20">
+    <div class="mx-auto max-w-container">
+      <SectionHeader
+        eyebrow="Service areas"
+        title="Servicing Sydney, the Central Coast and Newcastle"
+        description="From Sydney's coastline up through the Central Coast and into Newcastle, we cover the areas that cop the most sun, salt and pollen. Not sure if we service your suburb? Ask us — we're happy to check."
+        center
+      />
+    </div>
+  </section>
+
+  <section class="px-gutter py-24">
+    <div class="mx-auto max-w-container">
+      <p class="mx-auto mb-10 max-w-[640px] text-center text-[13px] italic text-salt-500">
+        Draft suburb lists below — confirm and edit these to match where you actually run jobs.
+      </p>
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+        {regions.map((region) => (
+          <div class="rounded-lg border border-salt-200 bg-white p-8 shadow-xs">
+            <h3 class="font-display text-[21px] font-black text-navy-800">{region.name}</h3>
+            <ul class="mt-4 flex flex-col gap-2 text-[17px] leading-relaxed text-navy-800">
+              {region.suburbs.map((suburb) => (
+                <li>{suburb}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy-900 px-gutter py-16 text-center text-white">
+    <div class="mx-auto max-w-container">
+      <div class="flex flex-wrap justify-center gap-3">
+        <Button href={site.quoteHref} variant="primary">Check your suburb →</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

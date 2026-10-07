@@ -1,0 +1,51 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+const exploreLinks = site.nav.filter((item) => item.href !== '/book');
+---
+
+<footer class="border-t-[3px] border-amber-500 bg-navy-900 text-salt-200">
+  <div class="mx-auto flex max-w-container flex-wrap gap-14 px-gutter pt-[72px] pb-8">
+    <div class="min-w-0 flex-[1_1_320px]">
+      <Logo />
+      <p class="mt-4 max-w-[340px] text-[15px] leading-relaxed">
+        Residential and commercial solar panel cleaning across Sydney, the Central Coast and Newcastle.
+      </p>
+    </div>
+
+    <div class="min-w-0 flex-[1_1_180px]">
+      <h4 class="mb-3.5 font-display text-xs font-bold uppercase tracking-[.14em] text-white">Explore</h4>
+      <ul class="space-y-2.5">
+        {exploreLinks.map((item) => (
+          <li><a href={item.href} class="text-[15px] text-salt-200 hover:text-amber-400">{item.label}</a></li>
+        ))}
+        <li><a href="/book" class="text-[15px] text-salt-200 hover:text-amber-400">Book now</a></li>
+      </ul>
+    </div>
+
+    <div class="min-w-0 flex-[1_1_180px]">
+      <h4 class="mb-3.5 font-display text-xs font-bold uppercase tracking-[.14em] text-white">Contact</h4>
+      <ul class="space-y-2.5">
+        <li>
+          <a href={site.phone.href} class="inline-flex items-center gap-2 font-display font-bold text-white hover:text-amber-400">
+            {site.phone.display}
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${site.email}`} class="inline-flex items-center gap-2 break-words font-display font-bold text-white hover:text-amber-400">
+            {site.email}
+          </a>
+        </li>
+        <li class="text-[15px] text-salt-300">Facebook / Instagram — add links when live</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/15">
+    <div class="mx-auto max-w-container px-gutter py-[18px] text-[13px] text-salt-300">
+      © {year} {site.name}. All rights reserved.
+    </div>
+  </div>
+</footer>

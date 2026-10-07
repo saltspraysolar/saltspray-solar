@@ -1,0 +1,242 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FaqList from '../components/FaqList.astro';
+import FinalCta from '../components/FinalCta.astro';
+import BeforeAfterSlider from '../components/BeforeAfterSlider.astro';
+import { site } from '../data/site';
+
+const serviceTags = [
+  'Residential solar cleaning',
+  'Commercial arrays',
+  'Bird dropping removal',
+  'Pollen & dust wash',
+  'Salt spray build-up',
+  'Spot-free pure water finish',
+];
+
+const services = [
+  {
+    number: '01',
+    title: 'Residential cleaning',
+    description:
+      'Deionised water and soft brushes on tile, metal and Colorbond roofs. No detergents, no scratching, no marks on the glass.',
+  },
+  {
+    number: '02',
+    title: 'Commercial arrays',
+    description:
+      'Warehouses, schools and strata blocks. Scheduled cleans with a report for the building or facilities manager.',
+  },
+  {
+    number: '03',
+    title: 'Bird dropping removal',
+    description:
+      'Droppings baked onto the glass are lifted without scraping, and we check underneath the array for nesting while we are up there.',
+  },
+  {
+    number: '04',
+    title: 'Pollen, dust & salt film',
+    description:
+      'The coastal film that rain spreads rather than removes. Washed off the glass with pure water, not smeared across it.',
+  },
+];
+
+const reviews = [
+  { quote: 'Review placeholder — paste the verbatim Google review here, trimmed only for length.', name: 'Customer name', suburb: 'Suburb' },
+  { quote: 'Review placeholder — paste the verbatim Google review here, trimmed only for length.', name: 'Customer name', suburb: 'Suburb' },
+  { quote: 'Review placeholder — paste the verbatim Google review here, trimmed only for length.', name: 'Customer name', suburb: 'Suburb' },
+];
+
+const faqs = [
+  {
+    question: 'How often should coastal panels be cleaned?',
+    answer:
+      'Every six months within 2km of the water, annually further inland. Panels under trees, near a main road or below a flight path for birds may need more.',
+    open: true,
+  },
+  {
+    question: 'Will cleaning void my panel warranty?',
+    answer:
+      'No. Deionised water and soft brushes are what panel manufacturers specify. Several warranties also require evidence of regular cleaning, and the report we send is that evidence.',
+  },
+  {
+    question: 'Do I need to be home on the day?',
+    answer:
+      'Only if the roof is reached through the house. Otherwise we clean, photograph the array and email you the report the same afternoon.',
+  },
+];
+
+const resultExamples = [
+  { label: 'Terrigal', before: 'Salt-filmed array on a two-storey tile roof, 120m from the water.', after: 'Same array after a pure-water clean, dried spot-free.', stat: '23%', reading: '4.12 kW → 5.07 kW' },
+  { label: 'Newcastle East', before: 'Commercial array with bird droppings baked across four strings.', after: 'Droppings lifted, mesh fitted along the northern edge.', stat: '18%', reading: '31.4 kW → 37.1 kW' },
+  { label: 'Avoca Beach', before: 'Pollen and dust film after a dry spring, rain-streaked.', after: 'Glass washed clear, no streaking on the frames.', stat: '11%', reading: '6.30 kW → 6.99 kW' },
+];
+---
+
+<BaseLayout title="SaltSpray Solar — Solar Panel Cleaning, Sydney to Newcastle" description={site.description}>
+  <div class="bg-sand-100">
+    <Hero
+      eyebrow="Sydney · Central Coast · Newcastle"
+      heading="Salt spray doesn't"
+      emphasis="stand a chance."
+      subtitle="SaltSpray Solar cleans residential and commercial solar panels across Sydney, the Central Coast and Newcastle. We shift dust, pollen, grime, bird droppings and the coastal salt film that builds up fast this close to the water — using pure, deionised water for a finish that dries spot-free. No scrubbing, no chemicals, no streaks left behind."
+      primaryHref={site.quoteHref}
+      primaryLabel="Get an Instant Quote →"
+      secondaryHref={site.phone.href}
+      secondaryLabel={`Call ${site.phone.display}`}
+      mediaNote="Hero shot — bright coastal daylight, array mid-clean, water beading off the glass."
+    />
+    <TrustStrip
+      badges={[
+        'Residential & commercial',
+        'Pure water, spot-free finish',
+        'No harsh chemicals',
+        'Instant price calculator',
+        'Book online, deposit secures your spot',
+      ]}
+    />
+  </div>
+
+  <div class="overflow-hidden border-y border-salt-200 bg-salt-100">
+    <div class="flex w-max animate-marquee gap-2 py-[18px] motion-reduce:animate-none">
+      {[0, 1].map((i) => (
+        <div class="flex gap-2 px-1" aria-hidden={i === 1 ? 'true' : undefined}>
+          {serviceTags.map((tag) => (
+            <span class="inline-flex h-[26px] items-center whitespace-nowrap rounded-pill border border-teal-300 bg-teal-100 px-3 font-display text-xs font-bold uppercase tracking-[.14em] text-teal-700">
+              {tag}
+            </span>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <section class="px-gutter py-24">
+    <div class="mx-auto max-w-container">
+      <SectionHeader
+        eyebrow="What we do"
+        title="Solar cleaning, done properly, panel by panel"
+        description="Four services, one visit to the roof. Full detail on each sits on the services page."
+        center
+      />
+      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {services.map((s) => (
+          <article class="flex flex-col gap-4 rounded-lg border border-salt-200 bg-white p-8 shadow-xs transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md">
+            <div class="flex h-[46px] w-[46px] items-center justify-center rounded-md bg-amber-100 font-display text-lg font-black text-amber-700">
+              {s.number}
+            </div>
+            <h3 class="text-[21px] font-black leading-[1.25] tracking-[-0.02em] text-navy-800">{s.title}</h3>
+            <p class="text-[17px] leading-relaxed text-navy-800">{s.description}</p>
+            <a href="/services" class="mt-auto inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">
+              Learn more →
+            </a>
+          </article>
+        ))}
+      </div>
+      <p class="mt-10 text-center">
+        <a href="/services" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">See all services →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-sand-100 px-gutter py-24">
+    <div class="mx-auto flex max-w-container flex-wrap items-center gap-[72px]">
+      <div class="min-w-0 flex-[1_1_400px]">
+        <div class="flex aspect-[3/2] flex-col items-center justify-center gap-3 rounded-lg border border-salt-300 bg-white p-8 text-center shadow-sm">
+          <div class="h-[88px] w-[88px] rounded-lg border border-amber-200 bg-amber-100"></div>
+          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-amber-700">Photo placeholder · 3:2</p>
+          <p class="max-w-[300px] text-[15px] leading-relaxed text-salt-600">Portrait of the operator with the van and water tank, shot on a job, coastal street behind.</p>
+        </div>
+      </div>
+      <div class="min-w-0 flex-[1_1_400px]">
+        <SectionHeader
+          eyebrow="Why SaltSpray Solar"
+          title="A local operator who treats your roof like his own"
+          description="Every job is done by the person who quoted it. No subcontractors, no rotating crews, and no walking on panels to save time. You get the same pair of hands each visit and a written record of what was done."
+        />
+        <ul class="mt-[30px] flex flex-col gap-[18px]">
+          {[
+            'Deionised water only — dries spot-free, leaves nothing behind on the glass',
+            'Fully insured and warranty-safe, with every clean logged for your manufacturer',
+            'Fixed price quoted before we arrive, and a two-hour arrival window on the day',
+          ].map((point) => (
+            <li class="flex items-start gap-3.5 text-[17px] leading-relaxed">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-teal-300 bg-teal-100 font-bold text-teal-700">✓</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-[30px]">
+          <a href="/why-us" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">Read more →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-gutter py-24">
+    <div class="mx-auto max-w-container">
+      <SectionHeader
+        eyebrow="Results"
+        title="See the difference, before and after"
+        description="Drag the handle to compare the same array before and after a pure-water clean. Inverter readings are taken on arrival and again before we pack up."
+      />
+      <div class="mt-6">
+        <BeforeAfterSlider examples={resultExamples}>
+          <p><a href="/results" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">See more results →</a></p>
+        </BeforeAfterSlider>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-sand-100 px-gutter py-24">
+    <div class="mx-auto flex max-w-container flex-wrap items-center gap-[72px]">
+      <div class="min-w-0 flex-[1_1_400px]">
+        <SectionHeader
+          eyebrow="Service areas"
+          title="Servicing Sydney, the Central Coast and Newcastle"
+          description="We work the coastal strip from the Sydney beaches up through the Central Coast to Newcastle and Lake Macquarie, plus the suburbs inland of them. Most bookings are filled the same week."
+        />
+        <p class="mt-[22px] text-[17px] leading-relaxed">Not sure if we cover your suburb? Ask us — we're happy to check.</p>
+        <p class="mt-6"><a href="/areas" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">See service areas →</a></p>
+      </div>
+      <div class="min-w-0 flex-[1_1_400px]">
+        <div class="flex aspect-[16/10] flex-col items-center justify-center gap-3 rounded-lg border border-salt-300 bg-white p-8 text-center shadow-sm">
+          <div class="h-[88px] w-[88px] rounded-lg border border-teal-300 bg-teal-100"></div>
+          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-teal-700">Map placeholder · 16:10</p>
+          <p class="max-w-[300px] text-[15px] leading-relaxed text-salt-600">Coverage map — coastline from Sydney to Newcastle with the serviced strip marked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-gutter py-24">
+    <div class="mx-auto max-w-container">
+      <SectionHeader eyebrow="Reviews" title="What our customers say" center />
+      <Testimonials reviews={reviews} />
+      <p class="mt-10 text-center"><a href="/reviews" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">Read all reviews →</a></p>
+    </div>
+  </section>
+
+  <section class="bg-salt-100 px-gutter py-24">
+    <div class="mx-auto max-w-container">
+      <SectionHeader eyebrow="Questions" title="Before you book" />
+      <div class="mt-8">
+        <FaqList items={faqs} />
+      </div>
+      <p class="mt-10"><a href="/faq" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">See all questions →</a></p>
+    </div>
+  </section>
+
+  <FinalCta
+    title="Ready to see your roof properly clean?"
+    description="Run your details through our instant quote tool, pick a time that suits, and we'll take it from there."
+    primaryHref={site.quoteHref}
+    primaryLabel="Get an Instant Quote →"
+    secondaryHref={site.phone.href}
+    secondaryLabel={`Call ${site.phone.display}`}
+  />
+</BaseLayout>
