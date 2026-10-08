@@ -16,7 +16,7 @@ import { site } from '../data/site';
 // Before/after photos: put the files in public/images/ and set the paths here, e.g. '/images/before.jpg'.
 // Leave a path empty to keep the labelled placeholder. Edit the caption and the three figures in the
 // results panel below to match the real job.
-const resultImages = { before: '', after: '' };
+const resultImages = { before: '/images/before.jpg', after: '/images/after.jpg' };
 
 const pillars = [
   {
@@ -155,24 +155,22 @@ const faqs = [
     <p class="eyebrow">Results</p>
     <h2 class="h2">Visual Proof. Measured Recovery.</h2>
     <p class="lede">We measure your inverter output before and after every clean. The example below is illustrative and will be replaced with real job results.</p>
-    <div class="mt-12 grid items-stretch gap-10 lg:grid-cols-[2fr_1fr]">
-      <div class="flex min-w-0 flex-col gap-3.5">
-        <CompareSlider beforeSrc={resultImages.before || undefined} afterSrc={resultImages.after || undefined} beforeNote="Array on arrival — salt film and droppings." afterNote="Same array after the robotic pure-water clean." />
-        <p class="font-mono text-sm leading-normal text-salt-600">Illustrative example: 16.6kW array, multi-storey commercial roof.</p>
+    <div class="mt-12 flex min-w-0 flex-col gap-3.5">
+      <CompareSlider beforeSrc={resultImages.before || undefined} afterSrc={resultImages.after || undefined} beforeNote="Array on arrival — salt film and droppings." afterNote="Same array after the robotic pure-water clean." />
+      <p class="font-mono text-sm leading-normal text-salt-600">Illustrative example: 16.6kW array, multi-storey commercial roof.</p>
+    </div>
+    <div class="mt-8 grid rounded-lg border border-salt-200 bg-sand-100 md:grid-cols-3 md:divide-x md:divide-sand-200">
+      <div class="border-b border-sand-200 p-7 md:border-b-0">
+        <div class="font-display text-[56px] font-black leading-none tracking-[-0.03em] text-navy-800">23%</div>
+        <p class="mt-2.5">Immediate Efficiency Gain Captured</p>
       </div>
-      <div class="flex min-w-0 flex-col rounded-lg border border-salt-200 bg-sand-100">
-        <div class="border-b border-sand-200 p-7">
-          <div class="font-display text-[56px] font-black leading-none tracking-[-0.03em] text-navy-800">23%</div>
-          <p class="mt-2.5">Immediate Efficiency Gain Captured</p>
-        </div>
-        <div class="border-b border-sand-200 p-7">
-          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">System Output Restored</p>
-          <p class="mt-2.5 font-mono text-[22px] font-semibold text-teal-700">4.12 kW ➔ 5.07 kW</p>
-        </div>
-        <div class="p-7">
-          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">Estimated Savings</p>
-          <p class="mt-2.5 font-mono text-[22px] font-semibold text-navy-800">$340+ per billing quarter.</p>
-        </div>
+      <div class="border-b border-sand-200 p-7 md:border-b-0">
+        <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">System Output Restored</p>
+        <p class="mt-2.5 font-mono text-[22px] font-semibold text-teal-700">4.12 kW ➔ 5.07 kW</p>
+      </div>
+      <div class="p-7">
+        <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">Estimated Savings</p>
+        <p class="mt-2.5 font-mono text-[22px] font-semibold text-navy-800">$340+ per billing quarter.</p>
       </div>
     </div>
   </Section>

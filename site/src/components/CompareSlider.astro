@@ -14,7 +14,7 @@ const { beforeSrc, afterSrc, beforeNote, afterNote } = Astro.props;
 
 <div
   data-compare
-  class="relative aspect-[16/10] cursor-ew-resize touch-none select-none overflow-hidden rounded-lg border border-salt-300 bg-salt-50 shadow-sm"
+  class="relative aspect-[2/1] sm:aspect-[3/1] lg:aspect-[3.77/1] cursor-ew-resize touch-none select-none overflow-hidden rounded-lg border border-salt-300 bg-salt-50 shadow-sm"
   role="slider"
   tabindex="0"
   aria-label="Drag to compare before and after"
@@ -24,10 +24,10 @@ const { beforeSrc, afterSrc, beforeNote, afterNote } = Astro.props;
 >
   <div class="absolute inset-0 flex flex-col items-start gap-2 bg-salt-100 p-6">
     {beforeSrc ? (
-      <img src={beforeSrc} alt="Before cleaning" class="absolute inset-0 h-full w-full object-cover" />
+      <img src={beforeSrc} alt="Solar panels before cleaning, covered in salt film and bird droppings, with the ocean behind" class="absolute inset-0 h-full w-full object-cover" />
     ) : (
       <>
-        <span class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">Before photo · 16:10</span>
+        <span class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">Before photo · wide</span>
         {beforeNote && <span class="max-w-[200px] text-[15px] leading-[1.55] text-salt-600">{beforeNote}</span>}
       </>
     )}
@@ -38,10 +38,10 @@ const { beforeSrc, afterSrc, beforeNote, afterNote } = Astro.props;
     data-compare-after
   >
     {afterSrc ? (
-      <img src={afterSrc} alt="After cleaning" class="absolute inset-0 h-full w-full object-cover" />
+      <img src={afterSrc} alt="The same solar panels after cleaning, clear and deep blue" class="absolute inset-0 h-full w-full object-cover" />
     ) : (
       <>
-        <span class="font-display text-xs font-bold uppercase tracking-[.14em] text-teal-700">After photo · 16:10</span>
+        <span class="font-display text-xs font-bold uppercase tracking-[.14em] text-teal-700">After photo · wide</span>
         {afterNote && <span class="max-w-[200px] text-[15px] leading-[1.55] text-teal-700">{afterNote}</span>}
       </>
     )}
