@@ -1,0 +1,24 @@
+---
+// Standard page section: padding + optional background tone + 1200px container.
+interface Props {
+  tone?: 'white' | 'sand' | 'salt' | 'deep';
+  id?: string;
+  class?: string;
+}
+
+const { tone = 'white', id, class: className = '' } = Astro.props;
+const tones: Record<string, string> = {
+  white: '',
+  sand: 'bg-sand-100',
+  salt: 'bg-salt-100',
+  deep: 'text-salt-200',
+};
+const deepStyle =
+  'background-color:#061626;background-image:repeating-conic-gradient(from 0deg at 50% 110%,rgba(245,165,36,.10) 0deg 3deg,transparent 3deg 12deg);';
+---
+
+<section id={id} class={`section ${tones[tone]} ${className}`} style={tone === 'deep' ? deepStyle : undefined}>
+  <div class="mx-auto max-w-container px-gutter">
+    <slot />
+  </div>
+</section>

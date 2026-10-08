@@ -8,3 +8,4 @@ dist/
 node_modules_old_*/
 dist_old_*/
 .astro_old_*/
+_old_*/

@@ -1,88 +1,106 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeader from '../components/SectionHeader.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import Photo from '../components/Photo.astro';
 import Button from '../components/Button.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
 import { site } from '../data/site';
 
 const services = [
   {
-    title: 'Residential Solar Cleaning',
-    description:
-      'A full clean of every panel on your roof using pure, deionised water — no minerals left behind, no spotting, no streaks once it dries. Suited to houses, granny flats and anything with a roof and a system on it.',
+    icon: 'gauge',
+    title: 'Residential Solar Panel Optimization',
+    body: 'Protect your household budget from climbing electricity prices. We deploy lightweight robotic solar panel cleaners to clear single-storey and multi-storey residential arrays safely. Our specialized crawler tracks apply calibrated, even pressure across tile, metal, and Colorbond roofs—recovering lost power generation without risking structural cracks or roof leaks.',
   },
   {
-    title: 'Commercial & Strata Arrays',
-    description:
-      'Rooftop and ground-mount arrays for businesses, warehouses, schools and body corporates, scheduled around your operating hours so we’re not getting in the way of the working day.',
+    icon: 'building-2',
+    title: 'Commercial, Industrial & Strata Arrays',
+    body: 'Maximize your facility’s green energy net margins while eliminating height-access risks. Designed for warehouses, schools, factories, and body corporates, our commercial solar crawlers navigate large-scale roof profiles via remote control. This eliminates high-risk manual labor crews walking along roof edges, neutralizing your workplace health and safety (WHS) liabilities. All jobs include comprehensive SWMS lodging and site-specific safety mapping.',
   },
   {
-    title: 'Bird Dropping & Grime Removal',
-    description:
-      'Baked-on droppings, tree sap, lichen and general grime lifted carefully off the glass without damaging seals, frames or mounting hardware.',
+    icon: 'scan-line',
+    title: 'Infrared Thermal Imaging Drone Inspections',
+    body: 'Solar asset degradation happens silently under the glass. Before we begin the cleaning process, our advanced diagnostic drones execute a complete infrared thermal sweep of your system. This aerial mapping instantly pinpoints sub-surface cell fractures, failing bypass diodes, and electrical hot spots invisible to the naked eye. You receive a digital health report to catch critical hardware faults before they cause permanent system failure or safety hazards.',
   },
   {
-    title: 'Pollen & Dust Wash',
-    description:
-      'Fine dust and pollen sit directly on the glass and block light before it ever reaches the cells underneath. We clear it off and restore a proper clean surface.',
+    icon: 'waves',
+    title: 'Heavy Marine Salt Spray & Crust Eradication',
+    body: 'Living near the NSW coastline means afternoon sea breezes bake a sticky layer of salt film directly onto your roof infrastructure. Regular rain cannot wash this away; it simply smears the salt into an opaque barrier that blocks sunlight. Our dual-roller nano-brushes cut through tough salt scale, maritime crust, and industrial pollution swiftly without using corrosive chemical detergents.',
   },
   {
-    title: 'Salt Spray Build-Up',
-    description:
-      'It’s in our name for a reason. Panels near the coast collect a fine salt film that dulls performance and is genuinely hard to shift with a garden hose. Pure water cuts through it properly.',
+    icon: 'bird',
+    title: 'Baked-On Bird Dropping & Lichen Extraction',
+    body: 'Bird droppings baked onto solar glass create hard “shading zones” that cause severe electrical imbalances inside your panels. Traditional scrubbing scratches the specialized anti-reflective glass coating. Our automated robotic cleaners lift baked-on organic debris, tree sap, and lichen carefully without scraping the glass or displacing factory rubber seals.',
   },
   {
-    title: 'Spot-Free Pure Water Finish',
-    description:
-      'Deionised water has nothing left in it to dry into spots or streaks — so the glass comes up clear and stays that way, without chemicals or high-pressure gear anywhere near your system.',
+    icon: 'droplets',
+    title: 'Four-Stage RO/DI Spot-Free Pure-Water Finish',
+    body: 'Standard tap water contains heavy calcium, magnesium, and iron particles that dry into cloudy, efficiency-blocking mineral scales. Our custom trailer rigs feature a multi-stage Reverse Osmosis and Deionization (RO/DI) filtration trolley that purifies water on-site down to a perfect 000 PPM (Parts Per Million). The result is a crystalline, streak-free surface that actively repels future dust accumulation.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'How do thermal drone inspections help my solar system?',
+    answer:
+      'A thermal drone solar inspection utilizes highly calibrated infrared sensors to detect temperature spikes across an array. When a solar cell is cracked, defective, or failing, it bottlenecks electricity and glows white-hot under infrared imagery. Identifying these hot spots early allows asset owners to lodge warranty claims and replace faulty hardware before it threatens the entire system’s electrical circuit.',
+    open: true,
   },
   {
-    title: 'Visual System Check',
-    description:
-      'While we’re up there, we keep an eye out for anything obvious — cracked glass, lifted seals, loose cabling — and let you know what we saw. We’re not electricians, but we’ll flag what’s worth a proper look.',
+    question: 'Will robotic solar cleaners damage or scratch my roof tiles?',
+    answer:
+      'No. Traditional manual cleaners walk heavily across your roof sheets and tiles while handling heavy poles, which frequently causes cracked tiles and subsequent internal ceiling leaks. Our specialized robotic crawlers weigh under 7kg and use ultra-soft rubber tracking systems that distribute weight evenly, ensuring a completely damage-free, zero-footprint clean.',
+  },
+  {
+    question: 'Can you clean commercial solar panels outside of standard business hours?',
+    answer:
+      'Yes. To prevent operational disruptions or foot-traffic hazards around commercial facility loading docks and entrances, Salt Spray Solar schedules high-volume industrial maintenance around your corporate operating windows, including early mornings and weekends.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Services — SaltSpray Solar"
-  description="Residential, commercial and strata solar panel cleaning across Sydney, the Central Coast and Newcastle."
+  title="Services — Salt Spray Solar"
+  description="Robotic solar cleaning, thermal drone inspections and RO/DI pure-water finishing across Sydney, the Central Coast and Newcastle."
 >
-  <section class="bg-sand-100 px-gutter py-20">
-    <div class="mx-auto max-w-container">
-      <SectionHeader
-        eyebrow="Services"
-        title="Solar cleaning, done properly, panel by panel"
-        description="Every job starts the same way — a look at your system, a clear idea of what's built up on the glass, and a clean that gets it off without putting anything else at risk. Here's what we cover."
-        center
-      />
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Services"
+    title="High-Yield Solar Optimization,"
+    emphasis="Powered by Intelligent Robotics"
+    sub="Advanced autonomous cleaning, infrared aerial diagnostics, and multi-stage pure-water filtration across Sydney, the Central Coast, and Newcastle. We remove performance-blocking grime without a single human footprint touching your roof matrix."
+  >
+    <Fragment slot="actions">
+      <Button href={site.bookHref} variant="primary">Run My Details Through the Instant Booking Calculator</Button>
+      <Button href={site.assessmentHref} variant="outline">Request an On-Site SWMS &amp; Engineering Proposal</Button>
+    </Fragment>
+    <Photo slot="media" ratio="4x5" note="Trailer rig with RO/DI filtration trolley set up kerbside, crawler on the roof behind." />
+  </PageHero>
 
-  <section class="px-gutter py-24">
-    <div class="mx-auto max-w-container">
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, i) => (
-          <article class="flex flex-col gap-4 rounded-lg border border-salt-200 bg-white p-8 shadow-xs">
-            <div class="flex h-[46px] w-[46px] items-center justify-center rounded-md bg-amber-100 font-display text-lg font-black text-amber-700">
-              {String(i + 1).padStart(2, '0')}
-            </div>
-            <h3 class="text-[21px] font-black leading-[1.25] tracking-[-0.02em] text-navy-800">{service.title}</h3>
-            <p class="text-[17px] leading-relaxed text-navy-800">{service.description}</p>
-          </article>
-        ))}
-      </div>
+  <Section>
+    <p class="eyebrow">The core service offerings</p>
+    <h2 class="h2">Six services, one site visit</h2>
+    <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {services.map((s, i) => <Card icon={s.icon} num={`0${i + 1}`} title={s.title}>{s.body}</Card>)}
     </div>
-  </section>
+  </Section>
 
-  <section class="bg-navy-900 px-gutter py-16 text-center text-white">
-    <div class="mx-auto max-w-container">
-      <p class="text-[19px] leading-relaxed text-salt-200">
-        Not sure which of these applies to you?
-      </p>
-      <div class="mt-6 flex flex-wrap justify-center gap-3">
-        <Button href={site.quoteHref} variant="primary">Get an Instant Quote →</Button>
-      </div>
-      <p class="mt-4 text-[15px] text-salt-300">and we'll sort it out from there.</p>
+  <Section tone="salt">
+    <div class="max-w-[928px]">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Service Frequently Asked Questions</h2>
+      <FaqList items={faqs} />
     </div>
-  </section>
+  </Section>
+
+  <CtaBand
+    title="Ready to Restore Your Solar Asset’s True Earning Power?"
+    lede="Don't let invisible environmental films drop your system's efficiency. Get a data-backed optimization service tailored to your home or commercial premises."
+    cards={[
+      { label: 'Residential Properties', tone: 'amber', href: site.bookHref, text: 'Run My Details Through the Instant Booking Calculator' },
+      { label: 'Commercial & Strata Facilities', tone: 'teal', href: site.assessmentHref, text: 'Request an On-Site SWMS & Engineering Proposal' },
+    ]}
+  />
 </BaseLayout>

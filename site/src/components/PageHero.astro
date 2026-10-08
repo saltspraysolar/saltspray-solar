@@ -1,0 +1,39 @@
+---
+// Page hero. Slots: "actions" (buttons) and "media" (a <Photo>). Leave "media" empty for a single-column hero.
+interface Props {
+  variant?: 'light' | 'deep';
+  eyebrow: string;
+  title: string;
+  emphasis: string;
+  sub: string;
+  subAs?: 'p' | 'h2';
+}
+
+const { variant = 'light', eyebrow, title, emphasis, sub, subAs = 'p' } = Astro.props;
+const deep = variant === 'deep';
+const hasMedia = Astro.slots.has('media');
+const Sub = subAs;
+---
+
+<section
+  class={deep ? 'text-salt-300' : 'border-b border-sand-200 bg-sand-100'}
+  style={deep
+    ? 'background-color:#123A5E;background-image:repeating-conic-gradient(from 0deg at 50% 110%,rgba(245,165,36,.10) 0deg 3deg,transparent 3deg 12deg);'
+    : undefined}
+>
+  <div
+    class={`mx-auto grid max-w-container gap-10 px-gutter pb-12 pt-14 md:gap-16 md:pb-20 md:pt-[88px] ${
+      hasMedia ? 'items-center lg:grid-cols-2' : ''
+    }`}
+  >
+    <div class={`min-w-0 ${hasMedia ? '' : 'max-w-[860px]'}`}>
+      <p class={`eyebrow ${deep ? 'eyebrow-deep' : ''}`}>{eyebrow}</p>
+      <h1 class={`h1 ${deep ? 'h1-light' : ''}`}>{title} <em>{emphasis}</em></h1>
+      <Sub class={`mt-6 max-w-[620px] text-[17px] leading-[1.68] md:text-[19px] ${deep ? 'text-salt-300' : ''}`}>{sub}</Sub>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <slot name="actions" />
+      </div>
+    </div>
+    {hasMedia && <div class="min-w-0"><slot name="media" /></div>}
+  </div>
+</section>

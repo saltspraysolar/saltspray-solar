@@ -3,19 +3,15 @@ interface Props {
   eyebrow: string;
   title: string;
   description?: string;
-  center?: boolean;
+  light?: boolean;
   class?: string;
 }
 
-const { eyebrow, title, description, center = false, class: className = '' } = Astro.props;
+const { eyebrow, title, description, light = false, class: className = '' } = Astro.props;
 ---
 
-<div class={`max-w-[720px] ${center ? 'mx-auto text-center' : ''} ${className}`}>
-  <p
-    class="inline-flex items-center gap-2.5 font-display text-xs font-bold uppercase tracking-[.14em] text-teal-700 before:h-0.5 before:w-7 before:bg-amber-500 before:content-['']"
-  >
-    {eyebrow}
-  </p>
-  <h2 class="mt-[18px] font-display text-[38px] font-black leading-[1.15] text-navy-800">{title}</h2>
-  {description && <p class="mt-4 text-[19px] leading-relaxed text-navy-800">{description}</p>}
+<div class={`max-w-[760px] ${className}`}>
+  <p class={`eyebrow ${light ? 'eyebrow-deep' : ''}`}>{eyebrow}</p>
+  <h2 class={`h2 ${light ? 'h2-light' : ''}`}>{title}</h2>
+  {description && <p class={`lede ${light ? 'lede-light' : ''}`}>{description}</p>}
 </div>

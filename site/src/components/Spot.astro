@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  tone?: 'amber' | 'sea' | 'deep';
+  small?: boolean;
+}
+
+const { icon, tone = 'amber', small = false } = Astro.props;
+const tones: Record<string, string> = {
+  amber: 'border-amber-200 bg-amber-100 text-amber-700',
+  sea: 'border-teal-300 bg-teal-100 text-teal-700',
+  deep: 'border-white/15 bg-navy-700 text-amber-400',
+};
+---
+
+<span class={`inline-flex shrink-0 items-center justify-center rounded-lg border ${small ? 'h-10 w-10' : 'h-14 w-14'} ${tones[tone]}`}>
+  <Icon name={icon} class={small ? 'h-5 w-5' : 'h-6 w-6'} />
+</span>

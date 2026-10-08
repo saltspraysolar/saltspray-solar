@@ -1,0 +1,46 @@
+---
+// A real photo when `src` is set, otherwise the labelled placeholder from the design.
+// To assign an image later: drop the file in public/images/ and pass src="/images/name.jpg" alt="…".
+interface Props {
+  ratio?: '4x5' | '4x3' | '3x2' | '16x10' | '21x9';
+  label?: string;
+  note?: string;
+  deep?: boolean;
+  src?: string;
+  alt?: string;
+  class?: string;
+}
+
+const { ratio = '4x3', label, note, deep = false, src, alt = '', class: className = '' } = Astro.props;
+
+const ratios: Record<string, string> = {
+  '4x5': 'aspect-[4/5]',
+  '4x3': 'aspect-[4/3]',
+  '3x2': 'aspect-[3/2]',
+  '16x10': 'aspect-[16/10]',
+  '21x9': 'aspect-[4/5] md:aspect-[21/9]',
+};
+const panelGrid =
+  'background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 56px 34px;';
+const ratioLabel = ratio.replace('x', ':');
+---
+
+{
+  src ? (
+    <img src={src} alt={alt} loading="lazy" class={`${ratios[ratio]} w-full rounded-lg border border-salt-300 object-cover shadow-sm ${className}`} />
+  ) : (
+    <div
+      class={`${ratios[ratio]} flex flex-col items-center justify-center gap-3 rounded-lg border p-8 text-center ${
+        deep
+          ? 'border-white/15 bg-navy-800'
+          : 'border-salt-300 bg-white shadow-sm'
+      } ${className}`}
+      style={deep ? panelGrid : undefined}
+    >
+      <span class={`font-display text-xs font-bold uppercase tracking-[.14em] ${deep ? 'text-amber-400' : 'text-teal-700'}`}>
+        {label ?? `Photo placeholder · ${ratioLabel}`}
+      </span>
+      {note && <span class={`max-w-[320px] text-[15px] leading-[1.6] ${deep ? 'text-salt-200' : 'text-salt-600'}`}>{note}</span>}
+    </div>
+  )
+}

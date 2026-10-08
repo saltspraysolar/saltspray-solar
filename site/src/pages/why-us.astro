@@ -1,73 +1,101 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeader from '../components/SectionHeader.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
 
-const points = [
+const reasons = [
   {
-    title: 'Pure water, no chemicals',
-    description:
-      'Deionised water lifts dirt and salt film without leaving mineral spots behind — no harsh chemicals, no high-pressure gear, nothing that puts your panels or their warranty at risk.',
+    icon: 'droplets',
+    title: '100% Zero-Footprint Precision Robotics',
+    body: 'Traditional contractors push heavy push-brooms or step onto your fragile solar matrix, which easily cracks internal silicon cells and causes catastrophic roof tile fractures. At Salt Spray Solar, we treat your system like a high-precision investment. We deploy lightweight, intelligent robotic solar panel cleaners that use calibrated nylon rollers to glide seamlessly across your array. No human footsteps touch your roof sheets, completely avoiding structural risk.',
   },
   {
-    title: 'Insured and safety-first',
-    description: 'Public liability insurance in place. Every job assessed for safe access before we start.',
-    note: 'Draft copy — confirm your exact insurance details before this goes live.',
+    icon: 'scan-line',
+    title: 'Data-Backed Infrared Thermal Analysis',
+    body: 'We don’t guess your solar system’s health—we map it. Every project is backed by high-resolution thermal imaging drone audits. Our aerial infrared sweeps pierce beneath the glass surface to actively isolate sub-surface cell micro-cracks, failing string lines, and dangerous electrical hot spots that reduce output and threaten structural fire safety. You receive a digital data report proving exactly where your system is losing power.',
   },
   {
-    title: 'We know coastal build-up',
-    description:
-      'Running jobs across Sydney, the Central Coast and Newcastle means we see the same thing on roof after roof — salt air, pollen and bird traffic that Sydney’s inland suburbs just don’t cop the same way.',
+    icon: 'gauge',
+    title: 'Industrial-Grade 4-Stage RO/DI Water Filtration',
+    body: 'Coastal salt-air film, industrial diesel soot, and bird droppings form a stubborn crust that regular town tap water cannot clean. In fact, tap water leaves behind calcium and iron minerals that bake into permanent, energy-blocking scale. Our mobile trailer rigs carry custom, 4-stage Reverse Osmosis and Deionization (RO/DI) filtration carts, purifying on-site mains water to a perfect 000 PPM (Parts Per Million). The glass dries completely spot-free and actively resists future environmental dust.',
   },
   {
-    title: 'Care for your system',
-    description: 'Every clean is done with your panels in mind first — the goal is better output, not just a shinier roof.',
+    icon: 'shield-check',
+    title: 'Strict WHS Liability Neutralization',
+    body: 'Safety is our baseline protocol. Salt Spray Solar carries a comprehensive $20 Million Public Liability Insurance portfolio explicitly engineered for working at heights. Fully accredited under SafeWork NSW Working Safely at Heights (RIIWHS204E) guidelines, we provide site-specific SWMS (Safe Work Method Statements) and strict Job Safety Analysis logs before mobilizing. By deploying remote-controlled crawlers instead of manual labor crews at roof edges, we insulate your residential property or commercial enterprise from severe workplace liability.',
   },
   {
-    title: 'Owner-operator, straight answers',
-    description:
-      'You deal with the person doing the work. No call centre, no subcontractors you’ve never met — just a clear price and a clean job.',
+    icon: 'badge-check',
+    title: 'Direct Accountability: The Founder-Operator Guarantee',
+    body: 'When you hire Salt Spray Solar, your high-value asset is never passed off to third-party subcontractors, rushed apprentices, or seasonal call-centre crews. Every drone flight, water optimization run, and system diagnostic is executed directly by the founder and technical operator. You receive a clear, fixed-price quote and a singular point of master-craft accountability from the M1 corridor down to the metropolitan hubs.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Why is robotic solar panel cleaning safer than manual pressure washing?',
+    answer:
+      'High-pressure manual washing forces moisture past the weatherproofing seals of solar panels, rusting internal copper lines and shorting out string inverters. Furthermore, human operators manually dragging hoses over a roof frequently break roof tiles, causing internal ceiling water damage. Automated robotic solar cleaners execute a zero-footprint wash cycle with zero chemical runoff, perfectly maintaining the structural integrity of your roof infrastructure.',
+    open: true,
+  },
+  {
+    question: 'Does Salt Spray Solar service commercial sites outside normal trading hours?',
+    answer:
+      'Yes. To eliminate foot-traffic hazards around commercial facility entrances, school courtyards, or busy industrial loading bays, Salt Spray Solar schedules high-volume warehouse and strata assets during off-peak windows, including early mornings and weekends, with full WHS documentation prepared in advance.',
+  },
+  {
+    question: 'Can coastal salt spray permanently damage my solar panels if not cleaned?',
+    answer:
+      'Yes. Coastal maritime salt spray creates a highly alkaline crystalline layer when baked onto solar glass. Over time, this salt scale chemically etches into the anti-reflective glass coating, permanently clouding the panel surface. Regular optimization using deionized pure water dissolves this coastal crust before it causes irreversible surface degradation.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Why SaltSpray Solar"
-  description="Owner-operated solar panel cleaning across Sydney, the Central Coast and Newcastle. Straight answers, on-time arrivals, a finish you can see from the driveway."
+  title="Why Salt Spray Solar"
+  description="Why NSW property owners and facility managers trust Salt Spray Solar for robotic solar optimisation."
 >
-  <section class="bg-sand-100 px-gutter py-20">
-    <div class="mx-auto max-w-container">
-      <SectionHeader
-        eyebrow="Why SaltSpray Solar"
-        title="A local operator who treats your roof like his own"
-        description="SaltSpray Solar is owner-operated, servicing Sydney, the Central Coast and Newcastle. Straight answers, on-time arrivals, and a finish you can see from the driveway."
-        center
-      />
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Why Salt Spray Solar"
+    title="The Precision Edge in"
+    emphasis="Solar Asset Optimization"
+    sub="Why residential property owners and NSW facility managers trust Salt Spray Solar to safely recover lost energy yield, detect hidden electrical faults, and eliminate workplace height liabilities."
+  >
+    <Fragment slot="actions">
+      <Button href={site.bookHref} variant="primary">Access Our Instant Booking Price Calculator</Button>
+      <Button href={site.assessmentHref} variant="outline">Request a Corporate Site Assessment &amp; SWMS Proposal</Button>
+    </Fragment>
+    <Photo slot="media" ratio="4x5" note="Founder-operator on site with drone and crawler, coastal roof behind, bright daylight." />
+  </PageHero>
 
-  <section class="px-gutter py-24">
-    <div class="mx-auto max-w-container">
-      <ul class="grid grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2">
-        {points.map((point) => (
-          <li class="flex items-start gap-4">
-            <span class="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-teal-300 bg-teal-100 font-bold text-teal-700">
-              ✓
-            </span>
-            <div>
-              <h3 class="text-[19px] font-black leading-tight tracking-[-0.02em] text-navy-800">{point.title}</h3>
-              <p class="mt-2 text-[17px] leading-relaxed text-navy-800">{point.description}</p>
-              {point.note && <p class="mt-2 text-[13px] italic text-salt-500">{point.note}</p>}
-            </div>
-          </li>
-        ))}
-      </ul>
+  <Section>
+    <p class="eyebrow">The structural pillars of value</p>
+    <h2 class="h2">Five reasons, one accountable operator</h2>
+    <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {reasons.map((r, i) => <Card icon={r.icon} num={`0${i + 1}`} title={r.title}>{r.body}</Card>)}
     </div>
-  </section>
+  </Section>
 
-  <section class="bg-navy-900 px-gutter py-16 text-center text-white">
-    <div class="mx-auto max-w-container">
-      <p class="font-display text-[28px] font-black text-white">Owner-operated.</p>
-      <p class="mt-2 text-[19px] text-salt-200">You deal with the person doing the work.</p>
+  <Section tone="salt">
+    <div class="max-w-[928px]">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Trust &amp; Credibility FAQs</h2>
+      <FaqList items={faqs} />
     </div>
-  </section>
+  </Section>
+
+  <CtaBand
+    title="Experience the Difference of Intelligent Solar Optimization."
+    lede="Don't settle for amateur roof maintenance. Partner with the NSW corridor’s premium robotic solar specialists."
+    cards={[
+      { label: 'Residential Roof Lines', tone: 'amber', href: site.bookHref, text: 'Access Our Instant Booking Price Calculator' },
+      { label: 'Commercial Infrastructure', tone: 'teal', href: site.assessmentHref, text: 'Request a Corporate Site Assessment & SWMS Proposal' },
+    ]}
+  />
 </BaseLayout>

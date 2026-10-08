@@ -1,44 +1,44 @@
 ---
 import Logo from './Logo.astro';
+import Icon from './Icon.astro';
 import { site } from '../data/site';
 
 const year = new Date().getFullYear();
-const exploreLinks = site.nav.filter((item) => item.href !== '/book');
 ---
 
 <footer class="border-t-[3px] border-amber-500 bg-navy-900 text-salt-200">
-  <div class="mx-auto flex max-w-container flex-wrap gap-14 px-gutter pt-[72px] pb-8">
+  <div class="mx-auto flex max-w-container flex-wrap gap-10 px-gutter pb-10 pt-[72px] md:gap-14">
     <div class="min-w-0 flex-[1_1_320px]">
       <Logo />
-      <p class="mt-4 max-w-[340px] text-[15px] leading-relaxed">
-        Residential and commercial solar panel cleaning across Sydney, the Central Coast and Newcastle.
+      <p class="mt-4 max-w-[340px] text-[15px] leading-[1.65]">
+        Robotic solar panel cleaning and thermal drone inspections across Sydney, the Central Coast and Newcastle.
       </p>
     </div>
 
-    <div class="min-w-0 flex-[1_1_180px]">
+    <div class="min-w-0 flex-[1_1_100%] md:flex-[1_1_180px]">
       <h4 class="mb-3.5 font-display text-xs font-bold uppercase tracking-[.14em] text-white">Explore</h4>
-      <ul class="space-y-2.5">
-        {exploreLinks.map((item) => (
-          <li><a href={item.href} class="text-[15px] text-salt-200 hover:text-amber-400">{item.label}</a></li>
+      <ul>
+        {site.nav.map((item) => (
+          <li class="mt-2.5 first:mt-0">
+            <a href={item.href} class="text-[15px] text-salt-200 hover:text-amber-400">{item.label}</a>
+          </li>
         ))}
-        <li><a href="/book" class="text-[15px] text-salt-200 hover:text-amber-400">Book now</a></li>
       </ul>
     </div>
 
-    <div class="min-w-0 flex-[1_1_180px]">
+    <div class="min-w-0 flex-[1_1_100%] md:flex-[1_1_180px]">
       <h4 class="mb-3.5 font-display text-xs font-bold uppercase tracking-[.14em] text-white">Contact</h4>
-      <ul class="space-y-2.5">
+      <ul>
         <li>
-          <a href={site.phone.href} class="inline-flex items-center gap-2 font-display font-bold text-white hover:text-amber-400">
-            {site.phone.display}
+          <a href={site.phone.href} class="inline-flex items-center gap-[9px] font-display font-bold text-white hover:text-amber-400">
+            <Icon name="phone" class="h-4 w-4 text-amber-400" />{site.phone.display}
           </a>
         </li>
-        <li>
-          <a href={`mailto:${site.email}`} class="inline-flex items-center gap-2 break-words font-display font-bold text-white hover:text-amber-400">
-            {site.email}
+        <li class="mt-2.5">
+          <a href={`mailto:${site.email}`} class="inline-flex items-center gap-[9px] break-words font-display font-bold text-white hover:text-amber-400">
+            <Icon name="mail" class="h-4 w-4 text-amber-400" />{site.email}
           </a>
         </li>
-        <li class="text-[15px] text-salt-300">Facebook / Instagram — add links when live</li>
       </ul>
     </div>
   </div>

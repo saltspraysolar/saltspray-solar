@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import Icon from '../components/Icon.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+
+const advantages = [
+  { icon: 'badge-check', tone: 'amber', title: 'Warranty Safe', body: 'Engineered nylon brushes approved by major solar brands.' },
+  { icon: 'droplets', tone: 'sea', title: 'Deionized Pure Water', body: 'Spotless, mineral-free rinsing for absolute optimization.' },
+  { icon: 'shield-check', tone: 'amber', title: 'Zero Roof Damage', body: 'Our lightweight robots mean no human feet walking on your roof tiles or metal sheets.' },
+  { icon: 'file-text', tone: 'deep', title: 'Fully Compliant', body: 'SafeWork NSW Working at Heights certified and insured up to $20 Million.' },
+] as const;
+
+const bookBg =
+  'background-color:#DCEFF3;background-image:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(255,224,172,.95) 0%,rgba(255,243,222,.6) 40%,rgba(255,243,222,0) 75%),repeating-conic-gradient(from 0deg at 50% -10%,rgba(245,165,36,.10) 0deg 3deg,rgba(245,165,36,0) 3deg 12deg),linear-gradient(180deg,#FFF3DE 0%,#DCEFF3 100%);';
+---
+
+<BaseLayout
+  title="Residential Robotic Solar Panel Cleaning — Salt Spray Solar"
+  description="Premium robotic solar panel cleaning for homes across Sydney, the Central Coast and Newcastle. Instant price and online booking."
+>
+  <PageHero
+    variant="deep"
+    eyebrow="Residential"
+    title="Stop Letting Dirty Panels"
+    emphasis="Drain Your Household Budget."
+    sub="Premium Robotic Solar Panel Cleaning by Salt Spray Solar. Servicing Sydney, the Central Coast, and Newcastle."
+    subAs="h2"
+  >
+    <Fragment slot="actions"><Button href="#book" variant="primary">Calculate my price</Button></Fragment>
+    <Photo slot="media" ratio="4x3" deep note="Cleaning robot mid-pass on a residential roof, coastal daylight." />
+  </PageHero>
+
+  <Section>
+    <div class="grid items-center gap-10 md:gap-16 lg:grid-cols-2">
+      <Photo ratio="4x3" deep note="Before/after split of a panel with dust, droppings and salt film." />
+      <div class="flex flex-col gap-5">
+        <p class="eyebrow eyebrow-amber">The problem</p>
+        <p class="statement">Did you know that dust, bird droppings, and coastal grime can steal up to 30% of your solar efficiency?</p>
+        <p class="lede mt-0">In New South Wales, electricity prices keep climbing. If your solar system isn't running at peak optimization, you are leaking money back to the grid every single day.</p>
+        <div class="flex max-w-[640px] items-start gap-3.5 border-t border-salt-200 pt-5 text-[17px] leading-[1.62] md:text-[19px]">
+          <Icon name="triangle-alert" class="mt-0.5 h-6 w-6 text-amber-600" />
+          <p><strong class="text-navy-900">Standard rain won't fix it.</strong> It just bakes the salt and dirt onto the glass.</p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="sand">
+    <div class="max-w-[760px]">
+      <p class="eyebrow">The solution</p>
+      <h2 class="h2">The Salt Spray Solar Advantage</h2>
+      <p class="lede">We don't use heavy pressure washers that crack glass, and we don't use cheap tap water that leaves mineral stains. Our specialized, ultra-lightweight robotic solar panel cleaners cruise across your roof to deliver a flawless finish.</p>
+    </div>
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {advantages.map((a) => <Card icon={a.icon} tone={a.tone} title={a.title} titleClass="text-[20px]">{a.body}</Card>)}
+    </div>
+  </Section>
+
+  <section id="book" class="section" style={bookBg}>
+    <div class="mx-auto flex max-w-[880px] flex-col items-center gap-5 px-gutter text-center">
+      <p class="eyebrow eyebrow-amber">Book online</p>
+      <h2 class="h2 mt-0">Instantly Calculate Your Price <em>&amp; Book Your Clean Below</em></h2>
+      <p class="lede mt-0">Select your region, choose your system size, and lock in your automated optimization service with Salt Spray Solar in under 60 seconds.</p>
+
+      {
+        site.bookingEmbedUrl ? (
+          <iframe
+            src={site.bookingEmbedUrl}
+            title="Book your solar panel clean"
+            class="mt-5 min-h-[700px] w-full rounded-lg border border-salt-200 bg-white shadow-md"
+            loading="lazy"
+          />
+        ) : (
+          <div class="mt-5 flex min-h-[520px] w-full flex-col items-center justify-center gap-3.5 rounded-lg border border-salt-200 bg-white p-6 text-salt-600 shadow-md md:p-10">
+            <Icon name="calendar-check" class="h-6 w-6 text-amber-600" />
+            <p class="font-display text-xl font-bold text-navy-800">Online booking is coming soon</p>
+            <p class="max-w-[420px] text-sm leading-normal">
+              In the meantime, call or email and we’ll confirm your price and a time that suits.
+            </p>
+            <div class="mt-2 flex flex-wrap justify-center gap-3">
+              <Button href={site.phone.href} variant="primary">Call {site.phone.display}</Button>
+              <Button href={`mailto:${site.email}`} variant="outline">Email us</Button>
+            </div>
+            <p class="mt-2 max-w-[560px] border-t border-salt-200 pt-4 text-[13px] leading-[1.55]">
+              To minimize local road emissions and protect fragile residential driveways, Salt Spray Solar utilizes an ultra-lightweight direct-feed trailer system that connects straight to your standard outdoor tap, purifying your water on-site.
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -7,23 +7,35 @@ interface FaqItem {
 
 interface Props {
   items: FaqItem[];
+  schema?: boolean; // emit FAQPage structured data (use on the main FAQ page only)
   class?: string;
 }
 
-const { items, class: className = '' } = Astro.props;
+const { items, schema = false, class: className = '' } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((i) => ({
+    '@type': 'Question',
+    name: i.question,
+    acceptedAnswer: { '@type': 'Answer', text: i.answer },
+  })),
+};
 ---
 
-<div class={`mx-auto max-w-[880px] ${className}`}>
+<div class={`${className.includes('mt-') ? '' : 'mt-8'} max-w-[928px] ${className}`}>
   {items.map((item) => (
-    <details open={item.open} class="group border-b border-salt-200">
+    <details open={item.open} class="group border-b border-salt-300">
       <summary
-        class="flex cursor-pointer list-none items-center justify-between gap-4 py-[22px] font-display text-[19px] font-bold text-navy-800 [&::-webkit-details-marker]:hidden"
+        class="flex cursor-pointer list-none items-center justify-between gap-4 py-[22px] font-display text-[19px] font-bold leading-[1.35] text-navy-800 [&::-webkit-details-marker]:hidden"
       >
         {item.question}
-        <span class="text-[22px] text-amber-600 group-open:hidden">+</span>
-        <span class="hidden text-[22px] text-amber-600 group-open:inline">–</span>
+        <span class="text-2xl leading-none text-amber-600 group-open:hidden" aria-hidden="true">+</span>
+        <span class="hidden text-2xl leading-none text-amber-600 group-open:inline" aria-hidden="true">–</span>
       </summary>
-      <p class="max-w-[680px] pb-6 text-[17px] leading-relaxed text-navy-800">{item.answer}</p>
+      <p class="max-w-[720px] pb-6 text-[17px] leading-[1.68] text-navy-800">{item.answer}</p>
     </details>
   ))}
 </div>
+{schema && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

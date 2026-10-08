@@ -1,0 +1,55 @@
+---
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+interface CtaCard {
+  label: string;
+  tone: 'amber' | 'teal';
+  href?: string;
+  text?: string;
+  contact?: boolean;
+}
+
+interface Props {
+  title: string;
+  lede: string;
+  cards: CtaCard[];
+}
+
+const { title, lede, cards } = Astro.props;
+---
+
+<section
+  id="get-started"
+  class="section text-salt-200"
+  style="background-color:#061626;background-image:repeating-conic-gradient(from 0deg at 50% 110%,rgba(245,165,36,.10) 0deg 3deg,transparent 3deg 12deg);"
+>
+  <div class="mx-auto max-w-container px-gutter">
+    <h2 class="h2 h2-light mt-0">{title}</h2>
+    <p class="lede lede-light">{lede}</p>
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      {
+        cards.map((c) => (
+          <div class={`flex flex-col gap-[18px] rounded-lg border border-white/15 bg-white/[.04] p-6 md:p-7 border-t-[3px] ${c.tone === 'amber' ? 'border-t-amber-500' : 'border-t-teal-300'}`}>
+            <p class={`font-display text-xs font-bold uppercase tracking-[.14em] ${c.tone === 'amber' ? 'text-amber-400' : 'text-teal-300'}`}>{c.label}</p>
+            {c.contact ? (
+              <div class="flex flex-col gap-3">
+                <a href={site.phone.href} class="inline-flex items-center gap-2.5 break-words font-display text-[19px] font-bold text-white hover:text-amber-400">
+                  <Icon name="phone" class="h-5 w-5 text-amber-400" />{site.phone.display}
+                </a>
+                <a href={`mailto:${site.email}`} class="inline-flex items-center gap-2.5 break-words font-display text-[19px] font-bold text-white hover:text-amber-400">
+                  <Icon name="mail" class="h-5 w-5 text-amber-400" />{site.email}
+                </a>
+              </div>
+            ) : (
+              <Button href={c.href!} variant={c.tone === 'amber' ? 'primary' : 'inverse'} block>
+                {c.text}
+              </Button>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

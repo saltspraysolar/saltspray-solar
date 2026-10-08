@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import Spot from '../components/Spot.astro';
+import Icon from '../components/Icon.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+
+const stack = [
+  { icon: 'scan-line', tone: 'amber', title: 'Thermal Imaging Drone Audits', body: 'Before a drop of water touches your roof, our thermal drones survey the entire array. Using infrared technology, we instantly isolate cracked cells, bypassed diodes, and failing strings that are invisible to the naked eye. You receive a complete digital health report.' },
+  { icon: 'shield-check', tone: 'deep', title: 'WHS Risk Reduction', body: 'Lightweight robotic crawlers minimize human foot traffic on fragile commercial roofs, removing the primary safety liabilities of working at heights.' },
+  { icon: 'droplets', tone: 'sea', title: 'Industrial-Scale DI Filtration', body: 'Pure, Reverse Osmosis Deionized water prevents mineral scaling, leaving a microscopic, spotless finish for maximum light absorption.' },
+  { icon: 'file-text', tone: 'amber', title: 'Strict Compliance Logistics', body: 'Full SafeWork NSW compliance, site-specific SWMS (Safe Work Method Statements), and $20M Public Liability Certificate of Currency provided prior to site entry.' },
+] as const;
+
+const steps = [
+  ['Site Evaluation & Flight Plan', 'Remote satellite assessment of your commercial layout followed by a scheduled drone thermal audit.'],
+  ['Compliance & SWMS Lodge', 'Complete safety, insurance, and flight paperwork submitted for facility approval.'],
+  ['Robotic Execution & Restoration', 'Specialized Ute-mounted filtration skids supply the crawlers for rapid, high-volume yield restoration.'],
+];
+
+const panelGrid =
+  'background-color:#0B2540;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:56px 34px;';
+
+const fieldClass =
+  'min-h-[46px] w-full rounded-sm border border-salt-300 bg-white px-3.5 py-2.5 font-body text-base leading-[1.4] text-navy-800 focus:border-teal-500 focus:outline-none focus:ring-[3px] focus:ring-teal-500/40';
+const labelClass = 'font-display text-sm font-bold text-navy-800';
+---
+
+<BaseLayout
+  title="Commercial Solar Maintenance & Thermal Drone Inspections — Salt Spray Solar"
+  description="WHS-compliant robotic maintenance and thermal drone inspections for commercial and strata solar arrays across Sydney, the Central Coast and Newcastle."
+>
+  <PageHero
+    variant="deep"
+    eyebrow="Commercial & strata"
+    title="Restore Lost Commercial Solar Yield"
+    emphasis="& Detect Hidden Faults."
+    sub="WHS-Compliant Robotic Maintenance & Thermal Drone Inspections Across Sydney, Central Coast, and Newcastle."
+    subAs="h2"
+  >
+    <Fragment slot="actions"><Button href="#assessment" variant="primary">Request an assessment</Button></Fragment>
+    <Photo slot="media" ratio="4x3" deep note="Aerial view of a large warehouse roof array with a thermal drone overhead." />
+  </PageHero>
+
+  <Section>
+    <div class="grid items-center gap-10 md:gap-16 lg:grid-cols-2">
+      <div class="flex flex-col gap-5">
+        <p class="eyebrow eyebrow-amber">The commercial reality</p>
+        <p class="statement">For commercial property managers, facility directors, and strata groups, an under-performing solar array is a direct hit to your corporate net margins.</p>
+        <p class="lede mt-0">Large commercial roof profiles in industrial zones across Western Sydney, the Central Coast, and the Port of Newcastle face severe environmental soiling, diesel soot, and harsh salt-air oxidation.</p>
+        <p class="lede mt-0">When your yield drops by even 10%, the financial impact across thousands of panels is staggering.</p>
+        <div class="flex max-w-[640px] items-start gap-3.5 border-t border-salt-200 pt-5 text-[17px] leading-[1.62] md:text-[19px]">
+          <Icon name="triangle-alert" class="mt-0.5 h-6 w-6 text-amber-600" />
+          <p>Furthermore, invisible cell cracks and failing inverters can create dangerous electrical hot spots that threaten your entire asset lifecycle.</p>
+        </div>
+      </div>
+      <Photo ratio="4x3" deep label="Image placeholder · 4:3" note="Thermal infrared capture of an array showing a cell hot spot." />
+    </div>
+  </Section>
+
+  <Section tone="sand">
+    <div class="max-w-[760px]">
+      <p class="eyebrow">Our tech stack</p>
+      <h2 class="h2">The Salt Spray Solar Tech Stack</h2>
+      <p class="lede">We combine cutting-edge aerial diagnostics with autonomous maintenance to offer a completely hands-off asset management solution.</p>
+    </div>
+    <div class="mt-14 grid gap-6 lg:grid-cols-2">
+      {stack.map((s) => <Card row icon={s.icon} tone={s.tone} title={s.title}>{s.body}</Card>)}
+    </div>
+  </Section>
+
+  <Section>
+    <div class="max-w-[760px]">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">The Enterprise Process</h2>
+      <p class="lede">We do not offer automated bookings for commercial assets. Every site requires strict mobilization logistics.</p>
+    </div>
+    <ol class="mt-12 grid gap-6 md:grid-cols-3">
+      {
+        steps.map(([title, text], i) => (
+          <li class={`border-t-[3px] pt-5 ${i === 0 ? 'border-amber-500' : 'border-salt-300'}`}>
+            <span class="mb-2.5 block font-mono text-[15px] font-semibold text-amber-700">0{i + 1}</span>
+            <h3 class="h3 text-[20px]">{title}</h3>
+            <p class="mt-2.5 leading-[1.62]">{text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <section id="assessment" class="section relative overflow-hidden" style={panelGrid}>
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(6,22,38,.88) 0%,rgba(6,22,38,.72) 45%,rgba(6,22,38,.88) 100%)"></div>
+    <!-- Swap the dark grid above for a background photo of a warehouse or factory roof array when you have one. -->
+    <div class="relative mx-auto flex max-w-container flex-col gap-10 px-gutter">
+      <div>
+        <p class="eyebrow eyebrow-deep">Site assessment</p>
+        <h2 class="h2 h2-light">Request a Site Assessment <em>&amp; Thermal Yield Audit</em></h2>
+        <p class="lede text-salt-200">Submit your facility details below. Salt Spray Solar will respond with a tailored capability statement and formal proposal within 24 business hours.</p>
+      </div>
+
+      <div id="assess-card" class="group rounded-lg bg-white p-6 text-navy-800 shadow-[0_12px_32px_rgba(6,22,38,.24)] md:p-10">
+        <form
+          id="assess-form"
+          class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 group-data-[sent=true]:hidden"
+          data-action={site.formAction}
+          data-email={site.email}
+        >
+          <div class="flex flex-col gap-[7px]"><label class={labelClass} for="f-name">Full name <span class="text-amber-700">*</span></label><input class={fieldClass} id="f-name" name="name" required /></div>
+          <div class="flex flex-col gap-[7px]"><label class={labelClass} for="f-role">Role</label><input class={fieldClass} id="f-role" name="role" placeholder="Facility manager" /></div>
+          <div class="flex flex-col gap-[7px]"><label class={labelClass} for="f-company">Company or strata name <span class="text-amber-700">*</span></label><input class={fieldClass} id="f-company" name="company" required /></div>
+          <div class="flex flex-col gap-[7px]"><label class={labelClass} for="f-email">Work email <span class="text-amber-700">*</span></label><input class={fieldClass} id="f-email" name="email" type="email" required /></div>
+          <div class="flex flex-col gap-[7px]"><label class={labelClass} for="f-phone">Phone</label><input class={fieldClass} id="f-phone" name="phone" type="tel" /></div>
+          <div class="flex flex-col gap-[7px]">
+            <label class={labelClass} for="f-region">Region</label>
+            <select class={fieldClass} id="f-region" name="region"><option>Sydney</option><option>Central Coast</option><option>Newcastle</option></select>
+          </div>
+          <div class="flex flex-col gap-[7px]"><label class={labelClass} for="f-address">Site address</label><input class={fieldClass} id="f-address" name="address" /></div>
+          <div class="flex flex-col gap-[7px]">
+            <label class={labelClass} for="f-size">Approx. system size</label>
+            <select class={fieldClass} id="f-size" name="size"><option>Under 30 kW</option><option>30–100 kW</option><option>100–500 kW</option><option>Over 500 kW</option></select>
+          </div>
+          <div class="flex flex-col gap-[7px] sm:col-span-2 lg:col-span-3">
+            <label class={labelClass} for="f-notes">Site notes</label>
+            <textarea class={`${fieldClass} min-h-[110px] resize-y`} id="f-notes" name="notes" rows="4"></textarea>
+            <small class="text-[13px] text-salt-500">Roof type, access constraints, known faults.</small>
+          </div>
+          <div class="sm:col-span-2 lg:col-span-3">
+            <button type="submit" class="inline-flex min-h-[54px] w-full items-center justify-center rounded-md border-2 border-amber-500 bg-amber-500 px-[26px] py-3.5 font-display text-base font-bold tracking-[0.01em] text-navy-900 transition-colors duration-150 hover:border-amber-400 hover:bg-amber-400 sm:w-auto">
+              Request assessment
+            </button>
+            <p class="mt-3 hidden text-sm text-salt-600" data-form-error role="alert"></p>
+          </div>
+        </form>
+
+        <div class="hidden flex-col gap-3.5 py-3 group-data-[sent=true]:flex" role="status">
+          <Spot icon="file-text" />
+          <h3 class="h3">Request received.</h3>
+          <p class="max-w-[440px] text-[19px] leading-[1.62]">We will respond with a tailored capability statement and formal proposal within 24 business hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('assess-form') as HTMLFormElement | null;
+  const card = document.getElementById('assess-card');
+  const errorEl = form?.querySelector<HTMLElement>('[data-form-error]');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const action = form.dataset.action;
+
+    if (action) {
+      // A real form endpoint is configured in src/data/site.ts.
+      try {
+        const res = await fetch(action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        card?.setAttribute('data-sent', 'true');
+      } catch {
+        if (errorEl) {
+          errorEl.textContent = 'Sorry, that didn’t send. Please call or email us instead.';
+          errorEl.classList.remove('hidden');
+        }
+      }
+      return;
+    }
+
+    // No endpoint yet: open the visitor's email app with the details filled in, so nothing is lost.
+    const lines = Array.from(data.entries()).map(([k, v]) => `${k}: ${v}`);
+    const subject = encodeURIComponent('Site assessment request');
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = `mailto:${form.dataset.email}?subject=${subject}&body=${body}`;
+  });
+</script>

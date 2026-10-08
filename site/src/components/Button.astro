@@ -2,21 +2,22 @@
 interface Props {
   href: string;
   variant?: 'primary' | 'outline' | 'inverse';
+  block?: boolean;
   class?: string;
 }
 
-const { href, variant = 'primary', class: className = '' } = Astro.props;
+const { href, variant = 'primary', block = false, class: className = '' } = Astro.props;
 
 const variants: Record<string, string> = {
-  primary: 'bg-amber-500 text-navy-900 hover:bg-amber-400 active:bg-amber-600',
-  outline: 'bg-transparent text-navy-800 border-2 border-navy-800 hover:bg-salt-100',
-  inverse: 'bg-transparent text-white border-2 border-white/40 hover:bg-white/10',
+  primary: 'border-amber-500 bg-amber-500 text-navy-900 hover:border-amber-400 hover:bg-amber-400 active:bg-amber-600',
+  outline: 'border-navy-800 bg-transparent text-navy-800 hover:bg-salt-100',
+  inverse: 'border-white bg-white text-navy-900 hover:border-salt-100 hover:bg-salt-100',
 };
 ---
 
 <a
   href={href}
-  class={`inline-flex h-[54px] items-center gap-2.5 rounded-md px-[26px] font-display text-[15px] font-bold tracking-[0.01em] transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-500 focus-visible:outline-offset-2 ${variants[variant]} ${className}`}
+  class={`${block ? 'flex w-full' : 'inline-flex w-full sm:w-auto'} min-h-[54px] items-center justify-center gap-2.5 rounded-md border-2 px-[26px] py-3.5 text-center font-display text-base font-bold leading-[1.3] tracking-[0.01em] transition-colors duration-150 ${variants[variant]} ${className}`}
 >
   <slot />
 </a>

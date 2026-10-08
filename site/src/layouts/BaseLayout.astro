@@ -10,6 +10,18 @@ interface Props {
 }
 
 const { title, description = site.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  telephone: site.phone.display,
+  email: site.email,
+  areaServed: ['Sydney', 'Central Coast', 'Newcastle', 'Lake Macquarie'].map((name) => ({ '@type': 'AdministrativeArea', name })),
+};
 ---
 
 <!doctype html>
@@ -19,6 +31,13 @@ const { title, description = site.description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,6 +45,7 @@ const { title, description = site.description } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
   </head>
   <body>
     <TopNav />

@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/book", "destination": "/residential#book", "permanent": true },
+    { "source": "/results", "destination": "/", "permanent": true },
+    { "source": "/reviews", "destination": "/", "permanent": true }
+  ]
+}

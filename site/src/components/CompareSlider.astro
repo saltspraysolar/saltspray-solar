@@ -1,0 +1,93 @@
+---
+import Icon from './Icon.astro';
+
+// Drag-to-compare. Pass beforeSrc/afterSrc for real photos; without them the labelled panes show.
+interface Props {
+  beforeSrc?: string;
+  afterSrc?: string;
+  beforeNote?: string;
+  afterNote?: string;
+}
+
+const { beforeSrc, afterSrc, beforeNote, afterNote } = Astro.props;
+---
+
+<div
+  data-compare
+  class="relative aspect-[16/10] cursor-ew-resize touch-none select-none overflow-hidden rounded-lg border border-salt-300 bg-salt-50 shadow-sm"
+  role="slider"
+  tabindex="0"
+  aria-label="Drag to compare before and after"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="50"
+>
+  <div class="absolute inset-0 flex flex-col items-start gap-2 bg-salt-100 p-6">
+    {beforeSrc ? (
+      <img src={beforeSrc} alt="Before cleaning" class="absolute inset-0 h-full w-full object-cover" />
+    ) : (
+      <>
+        <span class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">Before photo · 16:10</span>
+        {beforeNote && <span class="max-w-[200px] text-[15px] leading-[1.55] text-salt-600">{beforeNote}</span>}
+      </>
+    )}
+  </div>
+  <div
+    class="absolute inset-0 flex flex-col items-end gap-2 bg-teal-100 p-6 text-right"
+    style="clip-path:inset(0 0 0 50%)"
+    data-compare-after
+  >
+    {afterSrc ? (
+      <img src={afterSrc} alt="After cleaning" class="absolute inset-0 h-full w-full object-cover" />
+    ) : (
+      <>
+        <span class="font-display text-xs font-bold uppercase tracking-[.14em] text-teal-700">After photo · 16:10</span>
+        {afterNote && <span class="max-w-[200px] text-[15px] leading-[1.55] text-teal-700">{afterNote}</span>}
+      </>
+    )}
+  </div>
+  <div class="absolute bottom-0 top-0 w-0.5 bg-white" style="left:50%" data-compare-line></div>
+  <div
+    class="absolute flex h-11 w-11 items-center justify-center rounded-full border border-salt-300 bg-white text-navy-800 shadow-sm"
+    style="left:50%;top:50%;margin:-22px 0 0 -22px"
+    data-compare-handle
+  >
+    <Icon name="chevrons-left-right" class="h-5 w-5" />
+  </div>
+  <span class="absolute bottom-3 left-3.5 font-display text-[11px] font-bold uppercase tracking-[.14em] text-navy-800">Before</span>
+  <span class="absolute bottom-3 right-3.5 font-display text-[11px] font-bold uppercase tracking-[.14em] text-teal-700">After</span>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-compare]').forEach((root) => {
+    const after = root.querySelector<HTMLElement>('[data-compare-after]')!;
+    const line = root.querySelector<HTMLElement>('[data-compare-line]')!;
+    const handle = root.querySelector<HTMLElement>('[data-compare-handle]')!;
+    let dragging = false;
+
+    const set = (pct: number) => {
+      const p = Math.max(0, Math.min(100, pct));
+      after.style.clipPath = `inset(0 0 0 ${p}%)`;
+      line.style.left = `${p}%`;
+      handle.style.left = `${p}%`;
+      root.setAttribute('aria-valuenow', String(Math.round(p)));
+    };
+    const move = (e: PointerEvent) => {
+      const r = root.getBoundingClientRect();
+      set(((e.clientX - r.left) / r.width) * 100);
+    };
+
+    root.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      root.setPointerCapture(e.pointerId);
+      move(e);
+    });
+    root.addEventListener('pointermove', (e) => dragging && move(e));
+    root.addEventListener('pointerup', () => (dragging = false));
+    root.addEventListener('keydown', (e) => {
+      const now = Number(root.getAttribute('aria-valuenow') ?? 50);
+      if (e.key === 'ArrowLeft') set(now - 5);
+      if (e.key === 'ArrowRight') set(now + 5);
+    });
+  });
+</script>

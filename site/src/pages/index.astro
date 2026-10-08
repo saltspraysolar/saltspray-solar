@@ -1,242 +1,195 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import TrustStrip from '../components/TrustStrip.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
 import SectionHeader from '../components/SectionHeader.astro';
-import Testimonials from '../components/Testimonials.astro';
+import Card from '../components/Card.astro';
+import Spot from '../components/Spot.astro';
+import Icon from '../components/Icon.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import CompareSlider from '../components/CompareSlider.astro';
 import FaqList from '../components/FaqList.astro';
-import FinalCta from '../components/FinalCta.astro';
-import BeforeAfterSlider from '../components/BeforeAfterSlider.astro';
+import CtaBand from '../components/CtaBand.astro';
 import { site } from '../data/site';
 
-const serviceTags = [
-  'Residential solar cleaning',
-  'Commercial arrays',
-  'Bird dropping removal',
-  'Pollen & dust wash',
-  'Salt spray build-up',
-  'Spot-free pure water finish',
-];
-
-const services = [
+const pillars = [
   {
-    number: '01',
-    title: 'Residential cleaning',
-    description:
-      'Deionised water and soft brushes on tile, metal and Colorbond roofs. No detergents, no scratching, no marks on the glass.',
+    icon: 'droplets',
+    title: 'Autonomous Robotic Cleaning',
+    body: 'We don’t do manual scrubbing or walking on your roof lines. Our lightweight robotic solar panel cleaners feature engineered nylon tracks and variable-speed roller brushes approved by major solar manufacturers. Zero roof footprint. Zero risk of cracked tiles or sheet damage.',
   },
   {
-    number: '02',
-    title: 'Commercial arrays',
-    description:
-      'Warehouses, schools and strata blocks. Scheduled cleans with a report for the building or facilities manager.',
+    icon: 'scan-line',
+    title: 'Thermal Imaging Drone Audits',
+    body: 'Before a drop of water touches your roof, our advanced diagnostic drones map your system. Using infrared heat-mapping, we instantly pinpoint invisible micro-cracks, bypassed diodes, and electrical hot spots that are quietly killing your efficiency.',
   },
   {
-    number: '03',
-    title: 'Bird dropping removal',
-    description:
-      'Droppings baked onto the glass are lifted without scraping, and we check underneath the array for nesting while we are up there.',
+    icon: 'gauge',
+    title: 'Deionized Pure-Water Finish',
+    body: 'Harsh tap water contains calcium and magnesium that bake under the Australian sun, creating permanent efficiency-blocking mineral scales. We feed our robots multi-stage, Reverse Osmosis Deionized (RO/DI) pure water to guarantee a spotless, 000-PPM streak-free finish.',
   },
   {
-    number: '04',
-    title: 'Pollen, dust & salt film',
-    description:
-      'The coastal film that rain spreads rather than removes. Washed off the glass with pure water, not smeared across it.',
+    icon: 'waves',
+    title: 'Complete Marine Salt & Grime Eradication',
+    body: 'Living near the NSW coastline means a microscopic layer of sticky salt crust forms on your glass weekly. Standard rain doesn’t wash this away; it simply smears it. Our robotic systems lift baked-on bird droppings, marine crust, and airborne pollution without using corrosive chemical detergents.',
   },
 ];
 
-const reviews = [
-  { quote: 'Review placeholder — paste the verbatim Google review here, trimmed only for length.', name: 'Customer name', suburb: 'Suburb' },
-  { quote: 'Review placeholder — paste the verbatim Google review here, trimmed only for length.', name: 'Customer name', suburb: 'Suburb' },
-  { quote: 'Review placeholder — paste the verbatim Google review here, trimmed only for length.', name: 'Customer name', suburb: 'Suburb' },
+const proofs = [
+  ['100% Warranty Compliant:', 'Every robotic wash complies perfectly with Clean Energy Council guidelines, ensuring your multi-thousand-dollar product warranty remains pristine.'],
+  ['SafeWork NSW Certified:', 'We are fully ticketed in Working Safely at Heights (RIIWHS204E) and hold a current Construction White Card.'],
+  ['$20M Liability Architecture:', 'Backed by comprehensive commercial-grade public liability insurance. Property and strata managers receive full SWMS documentation before we mobilize.'],
+  ['Verifiable Proof of Yield:', 'We measure your inverter data before and after every single optimization cycle, handing you a complete, data-backed digital recovery report.'],
 ];
 
 const faqs = [
   {
-    question: 'How often should coastal panels be cleaned?',
+    question: 'Why should I choose robotic panel cleaning over standard pressure washing?',
     answer:
-      'Every six months within 2km of the water, annually further inland. Panels under trees, near a main road or below a flight path for birds may need more.',
+      'Standard high-pressure water blasting can crack solar glass templates, trigger micro-fractures inside the internal silicon cells, and easily force water past rubber seals, voiding your structural warranty. Salt Spray Solar utilizes specialized, ultra-lightweight robotic crawlers designed to apply precise, uniform pressure using warranty-safe nylon roller brushes, eliminating human foot-traffic damage entirely.',
     open: true,
   },
   {
-    question: 'Will cleaning void my panel warranty?',
+    question: 'Do I need a thermal imaging drone solar inspection?',
     answer:
-      'No. Deionised water and soft brushes are what panel manufacturers specify. Several warranties also require evidence of regular cleaning, and the report we send is that evidence.',
+      'Yes. Solar panel degradation and cells shorting out happen silently under the glass. Our aerial infrared drones execute a thermal solar audit to reveal hot spots, cracked modules, and failing bypass string loops that are completely invisible to the naked eye. This ensures you catch critical faults before they cause permanent system failure or hazardous house fires.',
   },
   {
-    question: 'Do I need to be home on the day?',
+    question: 'Will utilizing your pure water systems void my manufacturer warranty?',
     answer:
-      'Only if the roof is reached through the house. Otherwise we clean, photograph the array and email you the report the same afternoon.',
+      'No. Leading global solar brands strictly require multi-stage deionized (DI) pure water for cleaning maintenance. Because our RO/DI filtration cart strips out 100% of minerals, it leaves zero scaling behind, keeping your warranty pristine.',
   },
-];
-
-const resultExamples = [
-  { label: 'Terrigal', before: 'Salt-filmed array on a two-storey tile roof, 120m from the water.', after: 'Same array after a pure-water clean, dried spot-free.', stat: '23%', reading: '4.12 kW → 5.07 kW' },
-  { label: 'Newcastle East', before: 'Commercial array with bird droppings baked across four strings.', after: 'Droppings lifted, mesh fitted along the northern edge.', stat: '18%', reading: '31.4 kW → 37.1 kW' },
-  { label: 'Avoca Beach', before: 'Pollen and dust film after a dry spring, rain-streaked.', after: 'Glass washed clear, no streaking on the frames.', stat: '11%', reading: '6.30 kW → 6.99 kW' },
 ];
 ---
 
-<BaseLayout title="SaltSpray Solar — Solar Panel Cleaning, Sydney to Newcastle" description={site.description}>
-  <div class="bg-sand-100">
-    <Hero
-      eyebrow="Sydney · Central Coast · Newcastle"
-      heading="Salt spray doesn't"
-      emphasis="stand a chance."
-      subtitle="SaltSpray Solar cleans residential and commercial solar panels across Sydney, the Central Coast and Newcastle. We shift dust, pollen, grime, bird droppings and the coastal salt film that builds up fast this close to the water — using pure, deionised water for a finish that dries spot-free. No scrubbing, no chemicals, no streaks left behind."
-      primaryHref={site.quoteHref}
-      primaryLabel="Get an Instant Quote →"
-      secondaryHref={site.phone.href}
-      secondaryLabel={`Call ${site.phone.display}`}
-      mediaNote="Hero shot — bright coastal daylight, array mid-clean, water beading off the glass."
-    />
-    <TrustStrip
-      badges={[
-        'Residential & commercial',
-        'Pure water, spot-free finish',
-        'No harsh chemicals',
-        'Instant price calculator',
-        'Book online, deposit secures your spot',
-      ]}
-    />
-  </div>
+<BaseLayout
+  title="Salt Spray Solar — Robotic Solar Panel Cleaning, Sydney to Newcastle"
+  description="Robotic solar panel cleaning and thermal drone diagnostic audits across Sydney, the Central Coast and Newcastle."
+>
+  <PageHero
+    eyebrow="Sydney · Central Coast · Newcastle"
+    title="Stop Letting Grime Drain"
+    emphasis="Your Solar Investment."
+    sub="Salt Spray Solar delivers premium, robotic solar panel cleaning and thermal drone diagnostic audits across Sydney, the Central Coast, and Newcastle. We deploy advanced autonomous crawlers and infrared aerial tech to completely eliminate baked-on salt film, bird droppings, and industrial soot—recovering up to 30% of your lost energy yield without a single human stepping foot on your roof tiles."
+  >
+    <Fragment slot="actions">
+      <Button href={site.bookHref} variant="primary">Calculate Your Robotic Clean &amp; Book Online</Button>
+      <Button href={site.assessmentHref} variant="outline">Request a B2B Commercial Thermal Yield Audit</Button>
+    </Fragment>
+    <Photo slot="media" ratio="4x5" note="Robotic crawler mid-pass on a coastal array, roller brush and pure-water feed visible, bright daylight." />
+  </PageHero>
 
-  <div class="overflow-hidden border-y border-salt-200 bg-salt-100">
-    <div class="flex w-max animate-marquee gap-2 py-[18px] motion-reduce:animate-none">
-      {[0, 1].map((i) => (
-        <div class="flex gap-2 px-1" aria-hidden={i === 1 ? 'true' : undefined}>
-          {serviceTags.map((tag) => (
-            <span class="inline-flex h-[26px] items-center whitespace-nowrap rounded-pill border border-teal-300 bg-teal-100 px-3 font-display text-xs font-bold uppercase tracking-[.14em] text-teal-700">
-              {tag}
-            </span>
-          ))}
+  <section>
+    <div class="mx-auto grid max-w-container gap-6 px-gutter pt-14 md:grid-cols-2">
+      <a
+        href={site.bookHref}
+        class="flex flex-col gap-5 rounded-lg border border-t-[3px] border-salt-300 border-t-amber-500 bg-white p-6 text-navy-800 shadow-xs transition duration-200 hover:-translate-y-0.5 hover:shadow-md md:p-8"
+      >
+        <div class="flex items-center gap-[18px]">
+          <Spot icon="calendar-check" />
+          <span class="font-display text-xs font-bold uppercase tracking-[.14em] text-amber-700">Residential</span>
         </div>
-      ))}
-    </div>
-  </div>
-
-  <section class="px-gutter py-24">
-    <div class="mx-auto max-w-container">
-      <SectionHeader
-        eyebrow="What we do"
-        title="Solar cleaning, done properly, panel by panel"
-        description="Four services, one visit to the roof. Full detail on each sits on the services page."
-        center
-      />
-      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {services.map((s) => (
-          <article class="flex flex-col gap-4 rounded-lg border border-salt-200 bg-white p-8 shadow-xs transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md">
-            <div class="flex h-[46px] w-[46px] items-center justify-center rounded-md bg-amber-100 font-display text-lg font-black text-amber-700">
-              {s.number}
-            </div>
-            <h3 class="text-[21px] font-black leading-[1.25] tracking-[-0.02em] text-navy-800">{s.title}</h3>
-            <p class="text-[17px] leading-relaxed text-navy-800">{s.description}</p>
-            <a href="/services" class="mt-auto inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">
-              Learn more →
-            </a>
-          </article>
-        ))}
-      </div>
-      <p class="mt-10 text-center">
-        <a href="/services" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">See all services →</a>
-      </p>
+        <span class="flex items-center justify-between gap-4 font-display text-xl font-black leading-[1.2] tracking-[-0.02em] md:text-2xl">
+          I'm a Homeowner - Calculate My Price
+          <Icon name="chevron-right" class="h-6 w-6 text-amber-600" />
+        </span>
+        <span class="border-t border-salt-200 pt-4 text-[13px] leading-[1.55] text-salt-600">
+          To minimize local road emissions and protect fragile residential driveways, Salt Spray Solar utilizes an ultra-lightweight direct-feed trailer system that connects straight to your standard outdoor tap, purifying your water on-site.
+        </span>
+      </a>
+      <a
+        href={site.assessmentHref}
+        class="flex flex-col gap-5 rounded-lg border border-t-[3px] border-navy-700 border-t-teal-300 bg-navy-800 p-6 text-white shadow-xs transition duration-200 hover:-translate-y-0.5 hover:shadow-md md:p-8"
+      >
+        <div class="flex items-center gap-[18px]">
+          <Spot icon="building-2" tone="deep" />
+          <span class="font-display text-xs font-bold uppercase tracking-[.14em] text-teal-300">Commercial &amp; strata</span>
+        </div>
+        <span class="flex items-center justify-between gap-4 font-display text-xl font-black leading-[1.2] tracking-[-0.02em] md:text-2xl">
+          I Manage a Facility - Request a SWMS &amp; Audit Proposal
+          <Icon name="chevron-right" class="h-6 w-6 text-amber-400" />
+        </span>
+        <span class="border-t border-white/15 pt-4 text-[13px] leading-[1.55] text-salt-200">Goes to the commercial intake form.</span>
+      </a>
     </div>
   </section>
 
-  <section class="bg-sand-100 px-gutter py-24">
-    <div class="mx-auto flex max-w-container flex-wrap items-center gap-[72px]">
-      <div class="min-w-0 flex-[1_1_400px]">
-        <div class="flex aspect-[3/2] flex-col items-center justify-center gap-3 rounded-lg border border-salt-300 bg-white p-8 text-center shadow-sm">
-          <div class="h-[88px] w-[88px] rounded-lg border border-amber-200 bg-amber-100"></div>
-          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-amber-700">Photo placeholder · 3:2</p>
-          <p class="max-w-[300px] text-[15px] leading-relaxed text-salt-600">Portrait of the operator with the van and water tank, shot on a job, coastal street behind.</p>
-        </div>
-      </div>
-      <div class="min-w-0 flex-[1_1_400px]">
-        <SectionHeader
-          eyebrow="Why SaltSpray Solar"
-          title="A local operator who treats your roof like his own"
-          description="Every job is done by the person who quoted it. No subcontractors, no rotating crews, and no walking on panels to save time. You get the same pair of hands each visit and a written record of what was done."
-        />
-        <ul class="mt-[30px] flex flex-col gap-[18px]">
-          {[
-            'Deionised water only — dries spot-free, leaves nothing behind on the glass',
-            'Fully insured and warranty-safe, with every clean logged for your manufacturer',
-            'Fixed price quoted before we arrive, and a two-hour arrival window on the day',
-          ].map((point) => (
-            <li class="flex items-start gap-3.5 text-[17px] leading-relaxed">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-teal-300 bg-teal-100 font-bold text-teal-700">✓</span>
-              <span>{point}</span>
-            </li>
-          ))}
+  <Section>
+    <SectionHeader
+      eyebrow="What we do"
+      title="Advanced Solar Optimization, Powered by Intelligent Robotics"
+      description="Four core pillars of asset protection, executed flawlessly in a single zero-liability site visit."
+    />
+    <div class="mt-14 grid gap-6 md:grid-cols-2">
+      {pillars.map((p, i) => <Card icon={p.icon} num={`0${i + 1}`} title={p.title}>{p.body}</Card>)}
+    </div>
+  </Section>
+
+  <Section tone="deep">
+    <div class="grid items-center gap-10 md:gap-16 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow eyebrow-deep">Why Salt Spray Solar</p>
+        <h2 class="h2 h2-light">Engineered For High-Yield Performance &amp; Strict WHS Compliance</h2>
+        <p class="lede lede-light">We treat your residential or commercial solar asset like a high-precision investment, not a household chore.</p>
+        <ul class="mt-[34px] flex flex-col gap-[22px]">
+          {
+            proofs.map(([lead, text]) => (
+              <li class="flex items-start gap-4 border-t border-white/15 pt-[22px] leading-[1.62]">
+                <Icon name="check" class="mt-[3px] h-5 w-5 text-amber-400" />
+                <p><strong class="font-display font-bold text-white">{lead}</strong> {text}</p>
+              </li>
+            ))
+          }
         </ul>
-        <p class="mt-[30px]">
-          <a href="/why-us" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">Read more →</a>
-        </p>
       </div>
+      <Photo ratio="4x5" deep note="Thermal drone in flight over a commercial roof, or the infrared heat map it produces." />
     </div>
-  </section>
+  </Section>
 
-  <section class="px-gutter py-24">
-    <div class="mx-auto max-w-container">
-      <SectionHeader
-        eyebrow="Results"
-        title="See the difference, before and after"
-        description="Drag the handle to compare the same array before and after a pure-water clean. Inverter readings are taken on arrival and again before we pack up."
-      />
-      <div class="mt-6">
-        <BeforeAfterSlider examples={resultExamples}>
-          <p><a href="/results" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">See more results →</a></p>
-        </BeforeAfterSlider>
+  <Section>
+    <p class="eyebrow">Results</p>
+    <h2 class="h2">Real Visual Proof. Real Financial Recovery.</h2>
+    <p class="lede">Don't take our word for it—see the active solar yield recovery from real jobs across Terrigal, Newcastle, and Sydney.</p>
+    <div class="mt-12 grid items-stretch gap-10 lg:grid-cols-[2fr_1fr]">
+      <div class="flex min-w-0 flex-col gap-3.5">
+        <CompareSlider beforeNote="Array on arrival — salt film and droppings." afterNote="Same array after the robotic pure-water clean." />
+        <p class="font-mono text-sm leading-normal text-salt-600">16.6kW Array — Multi-Storey Commercial Roof, Newcastle Port Zone.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="bg-sand-100 px-gutter py-24">
-    <div class="mx-auto flex max-w-container flex-wrap items-center gap-[72px]">
-      <div class="min-w-0 flex-[1_1_400px]">
-        <SectionHeader
-          eyebrow="Service areas"
-          title="Servicing Sydney, the Central Coast and Newcastle"
-          description="We work the coastal strip from the Sydney beaches up through the Central Coast to Newcastle and Lake Macquarie, plus the suburbs inland of them. Most bookings are filled the same week."
-        />
-        <p class="mt-[22px] text-[17px] leading-relaxed">Not sure if we cover your suburb? Ask us — we're happy to check.</p>
-        <p class="mt-6"><a href="/areas" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">See service areas →</a></p>
-      </div>
-      <div class="min-w-0 flex-[1_1_400px]">
-        <div class="flex aspect-[16/10] flex-col items-center justify-center gap-3 rounded-lg border border-salt-300 bg-white p-8 text-center shadow-sm">
-          <div class="h-[88px] w-[88px] rounded-lg border border-teal-300 bg-teal-100"></div>
-          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-teal-700">Map placeholder · 16:10</p>
-          <p class="max-w-[300px] text-[15px] leading-relaxed text-salt-600">Coverage map — coastline from Sydney to Newcastle with the serviced strip marked.</p>
+      <div class="flex min-w-0 flex-col rounded-lg border border-salt-200 bg-sand-100">
+        <div class="border-b border-sand-200 p-7">
+          <div class="font-display text-[56px] font-black leading-none tracking-[-0.03em] text-navy-800">23%</div>
+          <p class="mt-2.5">Immediate Efficiency Gain Captured</p>
+        </div>
+        <div class="border-b border-sand-200 p-7">
+          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">System Output Restored</p>
+          <p class="mt-2.5 font-mono text-[22px] font-semibold text-teal-700">4.12 kW ➔ 5.07 kW</p>
+        </div>
+        <div class="p-7">
+          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">Estimated Household Savings</p>
+          <p class="mt-2.5 font-mono text-[22px] font-semibold text-navy-800">$340+ per billing quarter.</p>
         </div>
       </div>
     </div>
-  </section>
+  </Section>
 
-  <section class="px-gutter py-24">
-    <div class="mx-auto max-w-container">
-      <SectionHeader eyebrow="Reviews" title="What our customers say" center />
-      <Testimonials reviews={reviews} />
-      <p class="mt-10 text-center"><a href="/reviews" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">Read all reviews →</a></p>
+  <Section tone="salt">
+    <div class="max-w-[928px]">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Common questions</h2>
+      <FaqList items={faqs} />
+      <a href="/faq" class="mt-7 inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">
+        See all questions <Icon name="chevron-right" class="h-4 w-4" />
+      </a>
     </div>
-  </section>
+  </Section>
 
-  <section class="bg-salt-100 px-gutter py-24">
-    <div class="mx-auto max-w-container">
-      <SectionHeader eyebrow="Questions" title="Before you book" />
-      <div class="mt-8">
-        <FaqList items={faqs} />
-      </div>
-      <p class="mt-10"><a href="/faq" class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-navy-600 hover:text-amber-600">See all questions →</a></p>
-    </div>
-  </section>
-
-  <FinalCta
-    title="Ready to see your roof properly clean?"
-    description="Run your details through our instant quote tool, pick a time that suits, and we'll take it from there."
-    primaryHref={site.quoteHref}
-    primaryLabel="Get an Instant Quote →"
-    secondaryHref={site.phone.href}
-    secondaryLabel={`Call ${site.phone.display}`}
+  <CtaBand
+    title="Stop Letting Grime Drain Your Solar Investment."
+    lede="Calculate your robotic clean and book online, or request a commercial thermal yield audit."
+    cards={[
+      { label: 'Residential', tone: 'amber', href: site.bookHref, text: 'Calculate Your Robotic Clean & Book Online' },
+      { label: 'Commercial & strata', tone: 'teal', href: site.assessmentHref, text: 'Request a B2B Commercial Thermal Yield Audit' },
+    ]}
   />
 </BaseLayout>

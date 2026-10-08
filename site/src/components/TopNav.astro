@@ -1,22 +1,23 @@
 ---
 import Logo from './Logo.astro';
+import Icon from './Icon.astro';
 import { site } from '../data/site';
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
-<header class="sticky top-0 z-20 border-b border-white/15 bg-navy-900">
-  <div class="mx-auto flex max-w-container items-center gap-6 px-gutter py-3.5">
+<header class="sticky top-0 z-50 border-b border-white/15 bg-navy-900" data-site-header>
+  <div class="mx-auto flex min-h-[72px] max-w-container items-center gap-7 px-gutter">
     <Logo class="mr-auto" />
 
-    <nav aria-label="Main" class="hidden gap-6 md:flex">
+    <nav aria-label="Main" class="hidden gap-[26px] lg:flex">
       {
         site.nav.map((item) => {
           const isCurrent = currentPath === item.href;
           return (
             <a
               href={item.href}
-              class={`font-display text-[15px] font-bold text-white hover:text-amber-400 ${isCurrent ? 'text-amber-400' : ''}`}
+              class={`font-display text-[15px] font-bold hover:text-amber-400 ${isCurrent ? 'text-amber-400' : 'text-white'}`}
               aria-current={isCurrent ? 'page' : undefined}
             >
               {item.label}
@@ -28,29 +29,37 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
     <a
       href={site.phone.href}
-      class="hidden items-center gap-2 font-display text-[15px] font-bold text-white hover:text-amber-400 md:inline-flex"
+      class="hidden items-center gap-2 font-display text-[15px] font-bold text-white hover:text-amber-400 lg:inline-flex"
     >
+      <Icon name="phone" class="h-4 w-4 text-amber-400" />
       {site.phone.display}
     </a>
 
     <button
       type="button"
-      class="flex h-11 w-11 items-center justify-center rounded-md border border-white/15 text-white md:hidden"
+      class="flex h-11 w-11 items-center justify-center rounded-md border border-white/15 text-white lg:hidden"
       aria-label="Open menu"
       aria-expanded="false"
       data-nav-toggle
     >
-      ☰
+      <Icon name="menu" class="h-5 w-5" />
     </button>
   </div>
 
-  <nav aria-label="Mobile" class="hidden flex-col border-t border-white/15 bg-navy-900 px-gutter py-4 md:hidden" data-nav-panel>
+  <nav
+    aria-label="Mobile"
+    class="hidden flex-col border-t border-white/15 bg-navy-900 px-gutter pb-4 pt-2 lg:hidden"
+    data-nav-panel
+  >
     {site.nav.map((item) => (
-      <a href={item.href} class="py-2.5 font-display text-[15px] font-bold text-white hover:text-amber-400">
+      <a
+        href={item.href}
+        class="border-b border-white/10 py-3 font-display text-[17px] font-bold text-white hover:text-amber-400"
+      >
         {item.label}
       </a>
     ))}
-    <a href={site.phone.href} class="py-2.5 font-display text-[15px] font-bold text-white hover:text-amber-400">
+    <a href={site.phone.href} class="py-3 font-display text-[17px] font-bold text-amber-400">
       {site.phone.display}
     </a>
   </nav>
@@ -64,5 +73,6 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     const isOpen = panel?.classList.toggle('flex');
     panel?.classList.toggle('hidden');
     toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
   });
 </script>

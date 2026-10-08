@@ -1,29 +1,36 @@
 export const site = {
-  name: 'SaltSpray Solar',
+  name: 'Salt Spray Solar',
   url: 'https://saltspraysolar.com',
   description:
-    'SaltSpray Solar cleans residential and commercial solar panels across Sydney, the Central Coast and Newcastle using pure, deionised water for a spot-free finish.',
+    'Robotic solar panel cleaning and thermal drone diagnostic audits across Sydney, the Central Coast and Newcastle.',
   phone: {
-    display: '0455 010 220',
-    href: 'tel:0455010220',
+    display: '0415 344 558',
+    href: 'tel:0415344558',
   },
   email: 'hello@saltspraysolar.com',
   nav: [
+    { label: 'Residential', href: '/residential' },
+    { label: 'Commercial', href: '/commercial' },
     { label: 'Services', href: '/services' },
     { label: 'Why us', href: '/why-us' },
-    { label: 'Results', href: '/results' },
     { label: 'Areas', href: '/areas' },
-    { label: 'Reviews', href: '/reviews' },
     { label: 'FAQ', href: '/faq' },
-    { label: 'Book now', href: '/book' },
   ],
+  // Where the two main call-to-action buttons go.
+  bookHref: '/residential#book',
+  assessmentHref: '/commercial#assessment',
   social: {
     facebook: '',
     instagram: '',
   },
-  // Replace with the real Calendly link and Stripe Payment Link when ready.
-  calendlyUrl: '',
-  quoteHref: '/book',
+  // Paste these in when ready — pages render the real thing as soon as they are set.
+  // bookingEmbedUrl: the Calendly (or other booking tool) inline-embed URL for the residential page.
+  // mapEmbedUrl: the Google Maps "Embed a map" iframe src for the service-areas page.
+  // formAction: a form endpoint (e.g. Formspree) for the commercial assessment form.
+  //   While empty, the form opens the visitor's email app addressed to `email`.
+  bookingEmbedUrl: '',
+  mapEmbedUrl: '',
+  formAction: '',
 } as const;
 
 export type NavItem = (typeof site.nav)[number];
