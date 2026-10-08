@@ -8,9 +8,15 @@ import Spot from '../components/Spot.astro';
 import Icon from '../components/Icon.astro';
 import Photo from '../components/Photo.astro';
 import Button from '../components/Button.astro';
+import CompareSlider from '../components/CompareSlider.astro';
 import FaqList from '../components/FaqList.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site } from '../data/site';
+
+// Before/after photos: put the files in public/images/ and set the paths here, e.g. '/images/before.jpg'.
+// Leave a path empty to keep the labelled placeholder. Edit the caption and the three figures in the
+// results panel below to match the real job.
+const resultImages = { before: '', after: '' };
 
 const pillars = [
   {
@@ -143,6 +149,32 @@ const faqs = [
         </ul>
       </div>
       <Photo ratio="4x5" deep note="Thermal drone in flight over a commercial roof, or the infrared heat map it produces." />
+    </div>
+  </Section>
+
+  <Section>
+    <p class="eyebrow">Results</p>
+    <h2 class="h2">Real Visual Proof. Real Financial Recovery.</h2>
+    <p class="lede">Don't take our word for it—see the active solar yield recovery from real jobs across Terrigal, Newcastle, and Sydney.</p>
+    <div class="mt-12 grid items-stretch gap-10 lg:grid-cols-[2fr_1fr]">
+      <div class="flex min-w-0 flex-col gap-3.5">
+        <CompareSlider beforeSrc={resultImages.before || undefined} afterSrc={resultImages.after || undefined} beforeNote="Array on arrival — salt film and droppings." afterNote="Same array after the robotic pure-water clean." />
+        <p class="font-mono text-sm leading-normal text-salt-600">16.6kW Array — Multi-Storey Commercial Roof, Newcastle Port Zone.</p>
+      </div>
+      <div class="flex min-w-0 flex-col rounded-lg border border-salt-200 bg-sand-100">
+        <div class="border-b border-sand-200 p-7">
+          <div class="font-display text-[56px] font-black leading-none tracking-[-0.03em] text-navy-800">23%</div>
+          <p class="mt-2.5">Immediate Efficiency Gain Captured</p>
+        </div>
+        <div class="border-b border-sand-200 p-7">
+          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">System Output Restored</p>
+          <p class="mt-2.5 font-mono text-[22px] font-semibold text-teal-700">4.12 kW ➔ 5.07 kW</p>
+        </div>
+        <div class="p-7">
+          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">Estimated Household Savings</p>
+          <p class="mt-2.5 font-mono text-[22px] font-semibold text-navy-800">$340+ per billing quarter.</p>
+        </div>
+      </div>
     </div>
   </Section>
 
