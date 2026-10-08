@@ -9,10 +9,10 @@ import Button from '../components/Button.astro';
 import { site } from '../data/site';
 
 const advantages = [
-  { icon: 'badge-check', tone: 'amber', title: 'Warranty Safe', body: 'Soft, engineered nylon roller brushes.' },
-  { icon: 'droplets', tone: 'sea', title: 'Deionized Pure Water', body: 'Spotless, mineral-free rinsing for absolute optimization.' },
-  { icon: 'shield-check', tone: 'amber', title: 'Zero Roof Damage', body: 'Our lightweight robots mean no human feet walking on your roof tiles or metal sheets.' },
-  { icon: 'file-text', tone: 'deep', title: 'Fully Compliant', body: 'Trained in RIIWHS204E Work Safely at Heights, working to SafeWork NSW guidance, and insured up to $20 Million.' },
+  { icon: 'badge-check', tone: 'amber', title: 'Gentle on Panels', body: 'Soft nylon roller brushes, used in line with manufacturer cleaning instructions.' },
+  { icon: 'droplets', tone: 'sea', title: 'Deionized Pure Water', body: 'Spot-free rinsing with no mineral residue.' },
+  { icon: 'shield-check', tone: 'amber', title: 'Minimal Roof Contact', body: 'Lightweight robots do the cleaning, so no one walks across your panels.' },
+  { icon: 'file-text', tone: 'deep', title: 'Trained & Insured', body: 'Trained in RIIWHS204E Work Safely at Heights, working to SafeWork NSW guidance, and insured up to $20 Million.' },
 ] as const;
 
 const bookBg =
@@ -21,7 +21,7 @@ const bookBg =
 
 <BaseLayout
   title="Residential Robotic Solar Panel Cleaning — Salt Spray Solar"
-  description="Premium robotic solar panel cleaning for homes across Sydney, the Central Coast and Newcastle. Instant price and online booking."
+  description="Premium robotic solar panel cleaning for homes across Sydney, the Central Coast and Newcastle. Get a price and book online."
 >
   <PageHero
     variant="deep"
@@ -31,7 +31,7 @@ const bookBg =
     sub="Premium Robotic Solar Panel Cleaning by Salt Spray Solar. Servicing Sydney, the Central Coast, and Newcastle."
     subAs="h2"
   >
-    <Fragment slot="actions"><Button href="#book" variant="primary">Calculate my price</Button></Fragment>
+    <Fragment slot="actions"><Button href="#book" variant="primary">Get my price</Button></Fragment>
     <Photo slot="media" ratio="4x3" deep note="Cleaning robot mid-pass on a residential roof, coastal daylight." />
   </PageHero>
 
@@ -40,11 +40,11 @@ const bookBg =
       <Photo ratio="4x3" deep note="Before/after split of a panel with dust, droppings and salt film." />
       <div class="flex flex-col gap-5">
         <p class="eyebrow eyebrow-amber">The problem</p>
-        <p class="statement">Did you know that dust, bird droppings, and coastal grime can steal up to 30% of your solar efficiency?</p>
+        <p class="statement">Did you know that dust, bird droppings, and coastal grime can quietly cut your solar output?</p>
         <p class="lede mt-0">In New South Wales, electricity prices keep climbing. If your solar system isn't running at peak optimization, you are leaking money back to the grid every single day.</p>
         <div class="flex max-w-[640px] items-start gap-3.5 border-t border-salt-200 pt-5 text-[17px] leading-[1.62] md:text-[19px]">
           <Icon name="triangle-alert" class="mt-0.5 h-6 w-6 text-amber-600" />
-          <p><strong class="text-navy-900">Standard rain won't fix it.</strong> It just bakes the salt and dirt onto the glass.</p>
+          <p><strong class="text-navy-900">Rain often won't fix it.</strong> It can leave salt and dirt drying back onto the glass.</p>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@ const bookBg =
     <div class="max-w-[760px]">
       <p class="eyebrow">The solution</p>
       <h2 class="h2">The Salt Spray Solar Advantage</h2>
-      <p class="lede">We don't use heavy pressure washers that crack glass, and we don't use cheap tap water that leaves mineral stains. Our specialized, ultra-lightweight robotic solar panel cleaners cruise across your roof to deliver a flawless finish.</p>
+      <p class="lede">We don't use heavy pressure washers that crack glass, and we don't use cheap tap water that leaves mineral stains. Our specialized, ultra-lightweight robotic solar panel cleaners cruise across your panels for a clean, spot-free finish.</p>
     </div>
     <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {advantages.map((a) => <Card icon={a.icon} tone={a.tone} title={a.title} titleClass="text-[20px]">{a.body}</Card>)}
@@ -64,8 +64,8 @@ const bookBg =
   <section id="book" class="section" style={bookBg}>
     <div class="mx-auto flex max-w-[880px] flex-col items-center gap-5 px-gutter text-center">
       <p class="eyebrow eyebrow-amber">Book online</p>
-      <h2 class="h2 mt-0">Instantly Calculate Your Price <em>&amp; Book Your Clean Below</em></h2>
-      <p class="lede mt-0">Select your region, choose your system size, and lock in your automated optimization service with Salt Spray Solar in under 60 seconds.</p>
+      <h2 class="h2 mt-0">Get Your Price <em>&amp; Book Your Clean</em></h2>
+      <p class="lede mt-0">Select your region, choose your system size, and lock in your robotic clean with Salt Spray Solar.</p>
 
       {
         site.bookingEmbedUrl ? (

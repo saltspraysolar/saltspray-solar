@@ -10,15 +10,15 @@ import Button from '../components/Button.astro';
 import { site } from '../data/site';
 
 const stack = [
-  { icon: 'scan-line', tone: 'amber', title: 'Thermal Imaging Drone Audits', body: 'Before a drop of water touches your roof, our thermal drones survey the entire array. Using infrared technology, we instantly isolate cracked cells, bypassed diodes, and failing strings that are invisible to the naked eye. You receive a complete digital health report.' },
-  { icon: 'shield-check', tone: 'deep', title: 'WHS Risk Reduction', body: 'Lightweight robotic crawlers minimize human foot traffic on fragile commercial roofs, removing the primary safety liabilities of working at heights.' },
-  { icon: 'droplets', tone: 'sea', title: 'Industrial-Scale DI Filtration', body: 'Pure, Reverse Osmosis Deionized water prevents mineral scaling, leaving a microscopic, spotless finish for maximum light absorption.' },
+  { icon: 'scan-line', tone: 'amber', title: 'Thermal Imaging Drone Audits', body: 'Before a drop of water touches your roof, our thermal drones survey the entire array. Using infrared technology, we find hot spots that point to cracked cells, failed bypass diodes and failing strings invisible to the naked eye. You receive a complete digital health report.' },
+  { icon: 'shield-check', tone: 'deep', title: 'WHS Risk Reduction', body: 'Lightweight robotic crawlers minimize human foot traffic on fragile commercial roofs, reducing the risks of working at heights.' },
+  { icon: 'droplets', tone: 'sea', title: 'Industrial-Scale DI Filtration', body: 'Pure, Reverse Osmosis Deionized water prevents mineral scaling, leaving a spot-free finish for maximum light absorption.' },
   { icon: 'file-text', tone: 'amber', title: 'Strict Compliance Logistics', body: 'We work to SafeWork NSW guidance for roof work, with site-specific SWMS (Safe Work Method Statements) and a $20M Public Liability Certificate of Currency provided prior to site entry.' },
 ] as const;
 
 const steps = [
   ['Site Evaluation & Flight Plan', 'Remote satellite assessment of your commercial layout followed by a scheduled drone thermal audit.'],
-  ['Compliance & SWMS Lodge', 'Complete safety, insurance, and flight paperwork submitted for facility approval.'],
+  ['Compliance & SWMS Paperwork', 'Complete safety, insurance, and flight paperwork submitted for facility approval.'],
   ['Robotic Execution & Restoration', 'Specialized Ute-mounted filtration skids supply the crawlers for rapid, high-volume yield restoration.'],
 ];
 
@@ -32,14 +32,14 @@ const labelClass = 'font-display text-sm font-bold text-navy-800';
 
 <BaseLayout
   title="Commercial Solar Maintenance & Thermal Drone Inspections — Salt Spray Solar"
-  description="WHS-compliant robotic maintenance and thermal drone inspections for commercial and strata solar arrays across Sydney, the Central Coast and Newcastle."
+  description="Safety-focused robotic maintenance and thermal drone inspections for commercial and strata solar arrays across Sydney, the Central Coast and Newcastle."
 >
   <PageHero
     variant="deep"
     eyebrow="Commercial & strata"
     title="Restore Lost Commercial Solar Yield"
     emphasis="& Detect Hidden Faults."
-    sub="WHS-Compliant Robotic Maintenance & Thermal Drone Inspections Across Sydney, Central Coast, and Newcastle."
+    sub="Safety-Focused Robotic Maintenance & Thermal Drone Inspections Across Sydney, Central Coast, and Newcastle."
     subAs="h2"
   >
     <Fragment slot="actions"><Button href="#assessment" variant="primary">Request an assessment</Button></Fragment>
@@ -66,7 +66,7 @@ const labelClass = 'font-display text-sm font-bold text-navy-800';
     <div class="max-w-[760px]">
       <p class="eyebrow">Our tech stack</p>
       <h2 class="h2">The Salt Spray Solar Tech Stack</h2>
-      <p class="lede">We combine cutting-edge aerial diagnostics with autonomous maintenance to offer a completely hands-off asset management solution.</p>
+      <p class="lede">We combine cutting-edge aerial diagnostics with robotic maintenance to offer a low-disruption maintenance service.</p>
     </div>
     <div class="mt-14 grid gap-6 lg:grid-cols-2">
       {stack.map((s) => <Card row icon={s.icon} tone={s.tone} title={s.title}>{s.body}</Card>)}

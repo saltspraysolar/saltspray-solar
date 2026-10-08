@@ -21,29 +21,29 @@ const resultImages = { before: '', after: '' };
 const pillars = [
   {
     icon: 'droplets',
-    title: 'Autonomous Robotic Cleaning',
-    body: 'We don’t do manual scrubbing or walking on your roof lines. Our lightweight robotic solar panel cleaners feature engineered nylon tracks and variable-speed roller brushes. Zero roof footprint. Zero risk of cracked tiles or sheet damage.',
+    title: 'Robotic Panel Cleaning',
+    body: 'We don’t scrub by hand or walk across your panels. Our lightweight robotic solar panel cleaners run on soft tracks with variable-speed nylon roller brushes, and are designed to keep contact with your roof tiles and sheeting to a minimum.',
   },
   {
     icon: 'scan-line',
     title: 'Thermal Imaging Drone Audits',
-    body: 'Before a drop of water touches your roof, our advanced diagnostic drones map your system. Using infrared heat-mapping, we instantly pinpoint invisible micro-cracks, bypassed diodes, and electrical hot spots that are quietly killing your efficiency.',
+    body: 'Before a drop of water touches your roof, our diagnostic drones map your system. Infrared heat-mapping shows hot spots, the heat signature of cracked or faulty cells, failed bypass diodes and other electrical faults that quietly cut your output.',
   },
   {
     icon: 'gauge',
     title: 'Deionized Pure-Water Finish',
-    body: 'Harsh tap water contains calcium and magnesium that bake under the Australian sun, creating permanent efficiency-blocking mineral scales. We feed our robots multi-stage, Reverse Osmosis Deionized (RO/DI) pure water to guarantee a spotless, 000-PPM streak-free finish.',
+    body: 'Harsh tap water contains calcium and magnesium that can bake onto the glass under the Australian sun, leaving efficiency-blocking mineral spots. We feed our robots multi-stage Reverse Osmosis Deionized (RO/DI) pure water, with near-zero dissolved minerals, for a spot-free, streak-free finish.',
   },
   {
     icon: 'waves',
-    title: 'Complete Marine Salt & Grime Eradication',
-    body: 'Living near the NSW coastline means a microscopic layer of sticky salt crust forms on your glass weekly. Standard rain doesn’t wash this away; it simply smears it. Our robotic systems lift baked-on bird droppings, marine crust, and airborne pollution without using corrosive chemical detergents.',
+    title: 'Marine Salt & Grime Removal',
+    body: 'Living near the NSW coastline means a fine film of sticky salt builds up on your glass. Rain often doesn’t wash this away; it can simply smear it. Our robotic systems lift baked-on bird droppings, marine crust, and airborne pollution without using corrosive chemical detergents.',
   },
 ];
 
 const proofs = [
   ['Trained to Work Safely at Heights:', 'Our technicians hold the nationally recognised RIIWHS204E Work Safely at Heights unit of competency and a current Construction White Card, and we work to SafeWork NSW guidance for work on roofs.'],
-  ['$20M Liability Architecture:', 'Backed by comprehensive commercial-grade public liability insurance. Property and strata managers receive full SWMS documentation before we mobilize.'],
+  ['$20M Public Liability Insurance:', 'Covered by $20 million public liability insurance. Property and strata managers receive full SWMS documentation before we mobilize.'],
   ['Verifiable Proof of Yield:', 'We measure your inverter data before and after every single optimization cycle, handing you a complete, data-backed digital recovery report.'],
 ];
 
@@ -51,18 +51,18 @@ const faqs = [
   {
     question: 'Why should I choose robotic panel cleaning over standard pressure washing?',
     answer:
-      'Standard high-pressure water blasting can crack solar glass templates, trigger micro-fractures inside the internal silicon cells, and easily force water past rubber seals, voiding your structural warranty. Salt Spray Solar utilizes specialized, ultra-lightweight robotic crawlers designed to apply precise, uniform pressure using warranty-safe nylon roller brushes, eliminating human foot-traffic damage entirely.',
+      'High-pressure water can crack solar glass, cause micro-cracks in the cells and force water past the seals, and many panel manufacturers say it will void the warranty. Salt Spray Solar uses lightweight robotic crawlers that apply even, gentle pressure with soft nylon roller brushes and pure water, so no one has to walk across your panels.',
     open: true,
   },
   {
     question: 'Do I need a thermal imaging drone solar inspection?',
     answer:
-      'Yes. Solar panel degradation and cells shorting out happen silently under the glass. Our aerial infrared drones execute a thermal solar audit to reveal hot spots, cracked modules, and failing bypass string loops that are completely invisible to the naked eye. This ensures you catch critical faults before they cause permanent system failure or hazardous house fires.',
+      'It’s worth it, especially for older or underperforming systems. Many panel faults develop under the glass where you can’t see them. Our aerial infrared drones run a thermal audit to reveal hot spots that point to cracked cells, failing bypass diodes and other faults invisible to the naked eye, so you can catch problems early, before they get worse.',
   },
   {
-    question: 'Will utilizing your pure water systems void my manufacturer warranty?',
+    question: 'Will pure-water cleaning affect my manufacturer warranty?',
     answer:
-      'No. Leading global solar brands strictly require multi-stage deionized (DI) pure water for cleaning maintenance. Because our RO/DI filtration cart strips out 100% of minerals, it leaves zero scaling behind, keeping your warranty pristine.',
+      'We clean to your panel manufacturer’s published cleaning instructions: no high-pressure water, no harsh chemicals, and soft brushes only. Pure water rinses without leaving mineral spots. Warranty terms vary by brand, so we check the cleaning guidance for your panels before we start.',
   },
 ];
 ---
@@ -75,10 +75,10 @@ const faqs = [
     eyebrow="Sydney · Central Coast · Newcastle"
     title="Stop Letting Grime Drain"
     emphasis="Your Solar Investment."
-    sub="Salt Spray Solar delivers premium, robotic solar panel cleaning and thermal drone diagnostic audits across Sydney, the Central Coast, and Newcastle. We deploy advanced autonomous crawlers and infrared aerial tech to completely eliminate baked-on salt film, bird droppings, and industrial soot—recovering up to 30% of your lost energy yield without a single human stepping foot on your roof tiles."
+    sub="Salt Spray Solar delivers premium, robotic solar panel cleaning and thermal drone diagnostic audits across Sydney, the Central Coast, and Newcastle. We deploy robotic crawlers and infrared aerial tech to remove baked-on salt film, bird droppings, and industrial soot and recover lost energy yield, without anyone walking across your panels."
   >
     <Fragment slot="actions">
-      <Button href={site.bookHref} variant="primary">Calculate Your Robotic Clean &amp; Book Online</Button>
+      <Button href={site.bookHref} variant="primary">Get Your Price &amp; Book</Button>
       <Button href={site.assessmentHref} variant="outline">Request a B2B Commercial Thermal Yield Audit</Button>
     </Fragment>
     <Photo slot="media" ratio="4x5" note="Robotic crawler mid-pass on a coastal array, roller brush and pure-water feed visible, bright daylight." />
@@ -95,7 +95,7 @@ const faqs = [
           <span class="font-display text-xs font-bold uppercase tracking-[.14em] text-amber-700">Residential</span>
         </div>
         <span class="flex items-center justify-between gap-4 font-display text-xl font-black leading-[1.2] tracking-[-0.02em] md:text-2xl">
-          I'm a Homeowner - Calculate My Price
+          I'm a Homeowner - Get My Price
           <Icon name="chevron-right" class="h-6 w-6 text-amber-600" />
         </span>
         <span class="border-t border-salt-200 pt-4 text-[13px] leading-[1.55] text-salt-600">
@@ -123,7 +123,7 @@ const faqs = [
     <SectionHeader
       eyebrow="What we do"
       title="Advanced Solar Optimization, Powered by Intelligent Robotics"
-      description="Four core pillars of asset protection, executed flawlessly in a single zero-liability site visit."
+      description="Four core pillars of asset protection, delivered in a single site visit."
     />
     <div class="mt-14 grid gap-6 md:grid-cols-2">
       {pillars.map((p, i) => <Card icon={p.icon} num={`0${i + 1}`} title={p.title}>{p.body}</Card>)}
@@ -153,12 +153,12 @@ const faqs = [
 
   <Section>
     <p class="eyebrow">Results</p>
-    <h2 class="h2">Real Visual Proof. Real Financial Recovery.</h2>
-    <p class="lede">Don't take our word for it—see the active solar yield recovery from real jobs across Terrigal, Newcastle, and Sydney.</p>
+    <h2 class="h2">Visual Proof. Measured Recovery.</h2>
+    <p class="lede">We measure your inverter output before and after every clean. The example below is illustrative and will be replaced with real job results.</p>
     <div class="mt-12 grid items-stretch gap-10 lg:grid-cols-[2fr_1fr]">
       <div class="flex min-w-0 flex-col gap-3.5">
         <CompareSlider beforeSrc={resultImages.before || undefined} afterSrc={resultImages.after || undefined} beforeNote="Array on arrival — salt film and droppings." afterNote="Same array after the robotic pure-water clean." />
-        <p class="font-mono text-sm leading-normal text-salt-600">16.6kW Array — Multi-Storey Commercial Roof, Newcastle Port Zone.</p>
+        <p class="font-mono text-sm leading-normal text-salt-600">Illustrative example: 16.6kW array, multi-storey commercial roof.</p>
       </div>
       <div class="flex min-w-0 flex-col rounded-lg border border-salt-200 bg-sand-100">
         <div class="border-b border-sand-200 p-7">
@@ -170,7 +170,7 @@ const faqs = [
           <p class="mt-2.5 font-mono text-[22px] font-semibold text-teal-700">4.12 kW ➔ 5.07 kW</p>
         </div>
         <div class="p-7">
-          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">Estimated Household Savings</p>
+          <p class="font-display text-xs font-bold uppercase tracking-[.14em] text-salt-600">Estimated Savings</p>
           <p class="mt-2.5 font-mono text-[22px] font-semibold text-navy-800">$340+ per billing quarter.</p>
         </div>
       </div>
@@ -190,9 +190,9 @@ const faqs = [
 
   <CtaBand
     title="Stop Letting Grime Drain Your Solar Investment."
-    lede="Calculate your robotic clean and book online, or request a commercial thermal yield audit."
+    lede="Get a price and book your robotic clean, or request a commercial thermal yield audit."
     cards={[
-      { label: 'Residential', tone: 'amber', href: site.bookHref, text: 'Calculate Your Robotic Clean & Book Online' },
+      { label: 'Residential', tone: 'amber', href: site.bookHref, text: 'Get Your Price & Book' },
       { label: 'Commercial & strata', tone: 'teal', href: site.assessmentHref, text: 'Request a B2B Commercial Thermal Yield Audit' },
     ]}
   />

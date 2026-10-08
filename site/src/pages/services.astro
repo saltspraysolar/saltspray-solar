@@ -13,32 +13,32 @@ const services = [
   {
     icon: 'gauge',
     title: 'Residential Solar Panel Optimization',
-    body: 'Protect your household budget from climbing electricity prices. We deploy lightweight robotic solar panel cleaners to clear single-storey and multi-storey residential arrays safely. Our specialized crawler tracks apply calibrated, even pressure across tile, metal, and Colorbond roofs—recovering lost power generation without risking structural cracks or roof leaks.',
+    body: 'Protect your household budget from climbing electricity prices. We deploy lightweight robotic solar panel cleaners to clear single-storey and multi-storey residential arrays safely. Our specialized crawler tracks apply calibrated, even pressure across tile, metal, and Colorbond roofs—recovering lost power generation while keeping contact with your roof to a minimum.',
   },
   {
     icon: 'building-2',
     title: 'Commercial, Industrial & Strata Arrays',
-    body: 'Maximize your facility’s green energy net margins while eliminating height-access risks. Designed for warehouses, schools, factories, and body corporates, our commercial solar crawlers navigate large-scale roof profiles via remote control. This eliminates high-risk manual labor crews walking along roof edges, neutralizing your workplace health and safety (WHS) liabilities. All jobs include comprehensive SWMS lodging and site-specific safety mapping.',
+    body: 'Maximize your facility’s green energy net margins while reducing height-access risks. Designed for warehouses, schools, factories, and body corporates, our commercial solar crawlers navigate large-scale roof profiles via remote control. This reduces the time people spend working near roof edges, one of the biggest work health and safety (WHS) risks on any roof job. All jobs include a site-specific SWMS and safety plan, provided to your site manager.',
   },
   {
     icon: 'scan-line',
     title: 'Infrared Thermal Imaging Drone Inspections',
-    body: 'Solar asset degradation happens silently under the glass. Before we begin the cleaning process, our advanced diagnostic drones execute a complete infrared thermal sweep of your system. This aerial mapping instantly pinpoints sub-surface cell fractures, failing bypass diodes, and electrical hot spots invisible to the naked eye. You receive a digital health report to catch critical hardware faults before they cause permanent system failure or safety hazards.',
+    body: 'Solar asset degradation happens silently under the glass. Before we begin the cleaning process, our advanced diagnostic drones execute a complete infrared thermal sweep of your system. This aerial mapping shows hot spots, the heat signature of cracked or faulty cells, failing bypass diodes and other electrical faults invisible to the naked eye. You receive a digital health report to catch critical hardware faults before they cause permanent system failure or safety hazards.',
   },
   {
     icon: 'waves',
-    title: 'Heavy Marine Salt Spray & Crust Eradication',
-    body: 'Living near the NSW coastline means afternoon sea breezes bake a sticky layer of salt film directly onto your roof infrastructure. Regular rain cannot wash this away; it simply smears the salt into an opaque barrier that blocks sunlight. Our dual-roller nano-brushes cut through tough salt scale, maritime crust, and industrial pollution swiftly without using corrosive chemical detergents.',
+    title: 'Heavy Marine Salt Spray & Crust Removal',
+    body: 'Living near the NSW coastline means afternoon sea breezes leave a sticky layer of salt film on your panels. Rain often can’t wash this away; it can smear the salt into a hazy film that blocks sunlight. Our dual soft roller brushes cut through tough salt scale, maritime crust, and industrial pollution swiftly without using corrosive chemical detergents.',
   },
   {
     icon: 'bird',
     title: 'Baked-On Bird Dropping & Lichen Extraction',
-    body: 'Bird droppings baked onto solar glass create hard “shading zones” that cause severe electrical imbalances inside your panels. Traditional scrubbing scratches the specialized anti-reflective glass coating. Our automated robotic cleaners lift baked-on organic debris, tree sap, and lichen carefully without scraping the glass or displacing factory rubber seals.',
+    body: 'Bird droppings baked onto solar glass create hard “shading zones” that cause severe electrical imbalances inside your panels. Abrasive scrubbing can scratch the specialized anti-reflective glass coating. Our automated robotic cleaners lift baked-on organic debris, tree sap, and lichen gently, using soft brushes and pure water.',
   },
   {
     icon: 'droplets',
     title: 'Four-Stage RO/DI Spot-Free Pure-Water Finish',
-    body: 'Standard tap water contains heavy calcium, magnesium, and iron particles that dry into cloudy, efficiency-blocking mineral scales. Our custom trailer rigs feature a multi-stage Reverse Osmosis and Deionization (RO/DI) filtration trolley that purifies water on-site down to a perfect 000 PPM (Parts Per Million). The result is a crystalline, streak-free surface that actively repels future dust accumulation.',
+    body: 'Standard tap water contains heavy calcium, magnesium, and iron particles that dry into cloudy, efficiency-blocking mineral scales. Our custom trailer rigs feature a multi-stage Reverse Osmosis and Deionization (RO/DI) filtration trolley that purifies water on-site to near-zero dissolved minerals. The result is a spot-free, streak-free finish.',
   },
 ];
 
@@ -46,13 +46,13 @@ const faqs = [
   {
     question: 'How do thermal drone inspections help my solar system?',
     answer:
-      'A thermal drone solar inspection utilizes highly calibrated infrared sensors to detect temperature spikes across an array. When a solar cell is cracked, defective, or failing, it bottlenecks electricity and glows white-hot under infrared imagery. Identifying these hot spots early allows asset owners to lodge warranty claims and replace faulty hardware before it threatens the entire system’s electrical circuit.',
+      'A thermal drone solar inspection utilizes highly calibrated infrared sensors to detect temperature spikes across an array. When a solar cell is cracked, defective, or failing, it often runs hotter than the cells around it, which shows up clearly in infrared imagery. Finding these hot spots early gives you documented evidence for your installer or manufacturer, so faulty hardware can be assessed and replaced sooner.',
     open: true,
   },
   {
     question: 'Will robotic solar cleaners damage or scratch my roof tiles?',
     answer:
-      'No. Traditional manual cleaners walk heavily across your roof sheets and tiles while handling heavy poles, which frequently causes cracked tiles and subsequent internal ceiling leaks. Our specialized robotic crawlers weigh under 7kg and use ultra-soft rubber tracking systems that distribute weight evenly, ensuring a completely damage-free, zero-footprint clean.',
+      'Our robotic crawlers are designed to minimise contact with your roof. They weigh under 7kg and run on soft rubber tracks that spread their weight evenly across the panels, so no one has to walk across your tiles or sheeting to clean the array.',
   },
   {
     question: 'Can you clean commercial solar panels outside of standard business hours?',
@@ -70,11 +70,11 @@ const faqs = [
     eyebrow="Services"
     title="High-Yield Solar Optimization,"
     emphasis="Powered by Intelligent Robotics"
-    sub="Advanced autonomous cleaning, infrared aerial diagnostics, and multi-stage pure-water filtration across Sydney, the Central Coast, and Newcastle. We remove performance-blocking grime without a single human footprint touching your roof matrix."
+    sub="Robotic cleaning, infrared aerial diagnostics, and multi-stage pure-water filtration across Sydney, the Central Coast, and Newcastle. We remove performance-blocking grime without anyone walking across your panels."
   >
     <Fragment slot="actions">
-      <Button href={site.bookHref} variant="primary">Run My Details Through the Instant Booking Calculator</Button>
-      <Button href={site.assessmentHref} variant="outline">Request an On-Site SWMS &amp; Engineering Proposal</Button>
+      <Button href={site.bookHref} variant="primary">Get Your Price &amp; Book</Button>
+      <Button href={site.assessmentHref} variant="outline">Request an On-Site SWMS &amp; Proposal</Button>
     </Fragment>
     <Photo slot="media" ratio="4x5" note="Trailer rig with RO/DI filtration trolley set up kerbside, crawler on the roof behind." />
   </PageHero>
@@ -99,8 +99,8 @@ const faqs = [
     title="Ready to Restore Your Solar Asset’s True Earning Power?"
     lede="Don't let invisible environmental films drop your system's efficiency. Get a data-backed optimization service tailored to your home or commercial premises."
     cards={[
-      { label: 'Residential Properties', tone: 'amber', href: site.bookHref, text: 'Run My Details Through the Instant Booking Calculator' },
-      { label: 'Commercial & Strata Facilities', tone: 'teal', href: site.assessmentHref, text: 'Request an On-Site SWMS & Engineering Proposal' },
+      { label: 'Residential Properties', tone: 'amber', href: site.bookHref, text: 'Get Your Price & Book' },
+      { label: 'Commercial & Strata Facilities', tone: 'teal', href: site.assessmentHref, text: 'Request an On-Site SWMS & Proposal' },
     ]}
   />
 </BaseLayout>
