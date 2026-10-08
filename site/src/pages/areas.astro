@@ -66,9 +66,9 @@ const faqs = [
       'At Salt Spray Solar, we maintain absolute pricing transparency across all serviced NSW regions. Residential systems up to 12 panels feature a flat call-out and optimization fee of $150 to $180 AUD, inclusive of all regional travel along the M1 highway. Additional panels are budgeted on a clear, sliding scale of $8.00 to $15.00 AUD per panel, depending on height accessibility. Commercial or industrial warehouse operations receive custom tiered quotes based on total array volume and compliance logistics.',
   },
   {
-    question: 'Are your solar optimization services fully SafeWork NSW compliant?',
+    question: 'Do your solar optimization services follow SafeWork NSW safety guidance?',
     answer:
-      'Yes. Salt Spray Solar operates under strict Australian safety standards. Our solo operator holds current Working Safely at Heights (RIIWHS204E) credentials and a General Construction White Card. For every residential and commercial development across Sydney, the Central Coast, and Newcastle, we perform an independent risk assessment and supply site-specific SWMS documentation, backed by an elite $20 Million Public Liability Insurance architecture.',
+      'Yes. Salt Spray Solar operates to strict Australian safety standards. Our solo operator holds the nationally recognised RIIWHS204E Work Safely at Heights unit of competency and a General Construction White Card, and we work to SafeWork NSW guidance for work on roofs. For every residential and commercial development across Sydney, the Central Coast, and Newcastle, we perform an independent risk assessment and supply site-specific SWMS documentation, backed by an elite $20 Million Public Liability Insurance architecture.',
   },
 ];
 ---
@@ -132,7 +132,12 @@ const faqs = [
 
   <Section>
     {
-      site.mapEmbedUrl ? (
+      site.mapScriptUrl ? (
+        <>
+          <div id="saltspray-map" class="min-h-[420px] w-full overflow-hidden rounded-lg border border-salt-300 shadow-sm" />
+          <script is:inline src={site.mapScriptUrl} async />
+        </>
+      ) : site.mapEmbedUrl ? (
         <iframe
           src={site.mapEmbedUrl}
           title="Salt Spray Solar service area map"

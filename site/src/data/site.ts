@@ -29,6 +29,9 @@ export const site = {
   // formAction: a form endpoint (e.g. Formspree) for the commercial assessment form.
   //   While empty, the form opens the visitor's email app addressed to `email`.
   bookingEmbedUrl: '',
+  // mapScriptUrl: the src of the map app's embed script (e.g. https://<your-app>.vercel.app/embed-map.js).
+  //   When set, the areas page renders <div id="saltspray-map"> and loads that script.
+  mapScriptUrl: '',
   mapEmbedUrl: '',
   formAction: '',
 } as const;
