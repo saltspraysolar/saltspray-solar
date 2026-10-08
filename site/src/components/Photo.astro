@@ -8,10 +8,11 @@ interface Props {
   deep?: boolean;
   src?: string;
   alt?: string;
+  priority?: boolean; // true for above-the-fold images (loads immediately)
   class?: string;
 }
 
-const { ratio = '4x3', label, note, deep = false, src, alt = '', class: className = '' } = Astro.props;
+const { ratio = '4x3', label, note, deep = false, src, alt = '', priority = false, class: className = '' } = Astro.props;
 
 const ratios: Record<string, string> = {
   '4x5': 'aspect-[4/5]',
@@ -27,7 +28,7 @@ const ratioLabel = ratio.replace('x', ':');
 
 {
   src ? (
-    <img src={src} alt={alt} loading="lazy" class={`${ratios[ratio]} w-full rounded-lg border border-salt-300 object-cover shadow-sm ${className}`} />
+    <img src={src} alt={alt} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} class={`${ratios[ratio]} w-full rounded-lg border border-salt-300 object-cover shadow-sm ${className}`} />
   ) : (
     <div
       class={`${ratios[ratio]} flex flex-col items-center justify-center gap-3 rounded-lg border p-8 text-center ${
